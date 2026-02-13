@@ -1,53 +1,172 @@
-<!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TYYNWJEG4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-6TYYNWJEG4');
-  </script>
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <title>Zhuoming Chen</title>
-  
-  <meta name="author" content="Zhuoming Chen">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
-	
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .profile-text {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .profile-text h1 {
+      font-size: 32px;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .profile-text h2 {
+      font-size: 18px;
+      font-weight: 400;
+      color: #6b7280;
+      margin-top: 0;
+    }
+
+    .profile-text p {
+      margin-top: 15px;
+    }
+
+    .profile-links a {
+      text-decoration: none;
+      margin-right: 15px;
+      color: #2563eb;
+      font-weight: 500;
+    }
+
+    .profile-links a:hover {
+      text-decoration: underline;
+    }
+
+    .profile-image img {
+      width: 220px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    section {
+      margin-top: 50px;
+    }
+
+    section h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 5px;
+    }
+
+    .card {
+      background: white;
+      padding: 18px 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .card strong {
+      font-weight: 600;
+    }
+
+    .card span {
+      color: #6b7280;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      .profile-image img {
+        width: 180px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:63%;vertical-align:middle">
-              <p style="text-align:center">
-                <name>Zhuoming Chen 陈卓明</name>
-              </p>
-              <p>
-		I am a Ph.D. student at <a href="https://www.ri.cmu.edu">Carnegie Mellon University</a> starting from 2023, advised by Prof. <a href="https://www.andrew.cmu.edu/user/beidic/">Beidi Chen</a> and Prof. <a href="https://www.cs.cmu.edu/~zhihaoj2/">Zhihao Jia</a>. 
-		Prior to this, I pursued my undergraduate studies in Automation at <a href="https://www.tsinghua.edu.cn/en/">Tsinghua University</a>, 
-		where I had the privilege of working alongside Prof. <a href="https://pacman.cs.tsinghua.edu.cn/~zjd/">Jidong Zhai</a>. 
-		I also gained research experience under the guidance of Prof. <a href="https://alchem.cs.purdue.edu/xuehaiq.html">Xuehai Qian</a> at Purdue University.
-	      </p>
-              <p style="text-align:center">
-                <a href="mailto:chenzhuoming911@gmail.com">Email</a> &nbsp/&nbsp
-                <a href="https://scholar.google.com/citations?user=4Bb5KRYAAAAJ&hl=en">Google Scholar</a> &nbsp/&nbsp
-                <a href="https://github.com/dreaming-panda">Github</a>
-              </p>
-            </td>
-            <td style="padding:2.5%;width:40%;max-width:40%">
-              <a href="images/Zhuoming.jpg"><img style="width:100%;max-width:100%" alt="profile photo" src="images/Zhuoming.jpg" class="hoverZoomLink"></a>
-            </td>
-          </tr>
-        </tbody></table>
-</body>
 
+<div class="container">
+
+  <div class="header">
+    <div class="profile-text">
+      <h1>Zhuoming Chen 陈卓明</h1>
+      <h2>Ph.D. Student, Carnegie Mellon University</h2>
+
+      <p>
+        I am a Ph.D. student at 
+        <a href="https://www.ri.cmu.edu">Carnegie Mellon University</a> (2023–),
+        advised by Prof. 
+        <a href="https://www.andrew.cmu.edu/user/beidic/">Beidi Chen</a> 
+        and Prof. 
+        <a href="https://www.cs.cmu.edu/~zhihaoj2/">Zhihao Jia</a>.
+      </p>
+
+      <p>
+        I received my B.Eng. in Automation from 
+        <a href="https://www.tsinghua.edu.cn/en/">Tsinghua University</a>, 
+        where I worked with Prof. 
+        <a href="https://pacman.cs.tsinghua.edu.cn/~zjd/">Jidong Zhai</a>. 
+        I also worked with Prof. 
+        <a href="https://alchem.cs.purdue.edu/xuehaiq.html">Xuehai Qian</a> 
+        at Purdue University.
+      </p>
+
+      <div class="profile-links">
+        <a href="mailto:chenzhuoming911@gmail.com">Email</a>
+        <a href="https://scholar.google.com/citations?user=4Bb5KRYAAAAJ&hl=en">Google Scholar</a>
+        <a href="https://github.com/dreaming-panda">Github</a>
+      </div>
+    </div>
+
+    <div class="profile-image">
+      <img src="images/Zhuoming.jpg" alt="Zhuoming Chen">
+    </div>
+  </div>
+
+  <section>
+    <h3>Industry Experience</h3>
+
+    <div class="card">
+      <strong>Research Intern</strong>, Microsoft Research Asia (MSRA)  
+      <br>
+      <span>2021 – 2022 · Mentor: Yu Shi</span>
+    </div>
+
+    <div class="card">
+      <strong>Research Intern</strong>, Meta FAIR  
+      <br>
+      <span>2025 · Mentor: Leon Bottou</span>
+    </div>
+
+  </section>
+
+</div>
+
+</body>
 </html>
