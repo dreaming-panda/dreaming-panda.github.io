@@ -400,6 +400,16 @@
     }
     .pub-info { flex: 1; min-width: 0; }
     .pub-title { font-size: 16.5px; font-weight: 600; margin: 0 0 5px; line-height: 1.4; }
+    .pub-title a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .pub-title a:hover { color: var(--accent); }
+    .pub-title a::after {
+      content: " ↗";
+      font-size: 13px;
+      color: var(--text-faint);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .pub:hover .pub-title a::after { opacity: 1; }
     .pub-authors { font-size: 14.5px; color: var(--text-soft); margin: 0 0 9px; }
     .pub-authors .me { color: var(--accent); font-weight: 700; }
     .pub-badges { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
@@ -418,6 +428,18 @@
       display: inline-flex; align-items: center; gap: 4px;
     }
     .badge.arxiv { background: rgba(139,146,156,0.15); color: var(--text-faint); }
+    .badge.link {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-soft);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .badge.link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+    .badge.link svg { width: 13px; height: 13px; }
     @media (max-width: 560px) {
       .pub-thumb { width: 70px; height: 70px; font-size: 15px; }
       .pub { gap: 14px; padding: 16px; }
@@ -629,31 +651,43 @@
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#7c3aed,#ec4899);">Jack<br>pot</div>
           <div class="pub-info">
-            <p class="pub-title">Jackpot: Optimal Budgeted Rejection Sampling for Extreme Actor-Policy Mismatch Reinforcement Learning</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2602.06107">Jackpot: Optimal Budgeted Rejection Sampling for Extreme Actor-Policy Mismatch Reinforcement Learning</a></p>
             <p class="pub-authors"><span class="me">Z. Chen</span>, H. Liu, Y. Zhou, H. Zheng, B. Chen</p>
-            <div class="pub-badges"><span class="badge venue">ICLR 2026</span></div>
+            <div class="pub-badges">
+              <span class="badge venue">ICLR 2026</span>
+              <a class="badge link" href="https://arxiv.org/abs/2602.06107">arXiv</a>
+              <a class="badge link" href="https://github.com/Infini-AI-Lab/jackpot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+            </div>
           </div>
         </div>
 
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);">Mon<br>arch</div>
           <div class="pub-info">
-            <p class="pub-title">MonarchRT: Efficient Attention for Real-Time Video Generation</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2602.12271">MonarchRT: Efficient Attention for Real-Time Video Generation</a></p>
             <p class="pub-authors">K. Agarwal, <span class="me">Z. Chen</span>, C. Luo, Y. Chen, H. Zheng, X. Huang, &hellip;, B. Chen</p>
-            <div class="pub-badges"><span class="badge arxiv">arXiv 2026</span></div>
+            <div class="pub-badges">
+              <span class="badge arxiv">arXiv 2026</span>
+              <a class="badge link" href="https://arxiv.org/abs/2602.12271">arXiv</a>
+              <a class="badge link" href="https://github.com/Infini-AI-Lab/MonarchRT"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+              <a class="badge link" href="https://infini-ai-lab.github.io/MonarchRT/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Project</a>
+            </div>
           </div>
         </div>
 
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">Kine<br>tics</div>
           <div class="pub-info">
-            <p class="pub-title">Kinetics: Rethinking Test-Time Scaling Laws</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2506.05333">Kinetics: Rethinking Test-Time Scaling Laws</a></p>
             <p class="pub-authors">R. Sadhukhan*, <span class="me">Z. Chen</span>*, H. Zheng, Y. Zhou, E. Strubell, B. Chen</p>
             <div class="pub-badges">
               <span class="badge venue">NeurIPS 2025</span>
               <span class="badge award">🏆 TTODLER'25 Best Paper</span>
               <span class="badge award">★ LCFM'25 Oral</span>
               <span class="badge award">★ KDD GenAI'25 Oral</span>
+              <a class="badge link" href="https://arxiv.org/abs/2506.05333">arXiv</a>
+              <a class="badge link" href="https://github.com/Infini-AI-Lab/Kinetics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+              <a class="badge link" href="https://infini-ai-lab.github.io/Kinetics/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Project</a>
             </div>
           </div>
         </div>
@@ -661,11 +695,13 @@
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#8b5cf6,#06b6d4);">Magic<br>PiG</div>
           <div class="pub-info">
-            <p class="pub-title">MagicPiG: LSH Sampling for Efficient LLM Generation</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2410.16179">MagicPiG: LSH Sampling for Efficient LLM Generation</a></p>
             <p class="pub-authors"><span class="me">Z. Chen</span>, R. Sadhukhan, Z. Ye, Y. Zhou, J. Zhang, N. Nolte, &hellip;, B. Chen</p>
             <div class="pub-badges">
               <span class="badge venue">ICLR 2025</span>
               <span class="badge award">★ Spotlight</span>
+              <a class="badge link" href="https://arxiv.org/abs/2410.16179">arXiv</a>
+              <a class="badge link" href="https://github.com/Infini-AI-Lab/MagicPIG"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
             </div>
           </div>
         </div>
@@ -673,11 +709,13 @@
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#16a34a,#0d9488);">Seq<br>uoia</div>
           <div class="pub-info">
-            <p class="pub-title">Sequoia: Scalable, Robust, and Hardware-Aware Speculative Decoding</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2402.12374">Sequoia: Scalable, Robust, and Hardware-Aware Speculative Decoding</a></p>
             <p class="pub-authors"><span class="me">Z. Chen</span>*, A. May*, R. Svirschevski*, Y. Huang, M. Ryabinin, Z. Jia, B. Chen</p>
             <div class="pub-badges">
               <span class="badge venue">NeurIPS 2024</span>
               <span class="badge award">★ Spotlight</span>
+              <a class="badge link" href="https://arxiv.org/abs/2402.12374">arXiv</a>
+              <a class="badge link" href="https://github.com/Infini-AI-Lab/Sequoia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
             </div>
           </div>
         </div>
@@ -685,72 +723,106 @@
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);">Spec<br>Exec</div>
           <div class="pub-info">
-            <p class="pub-title">SpecExec: Massively Parallel Speculative Decoding for Interactive LLM Inference on Consumer Devices</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2406.02532">SpecExec: Massively Parallel Speculative Decoding for Interactive LLM Inference on Consumer Devices</a></p>
             <p class="pub-authors">R. Svirschevski*, A. May*, <span class="me">Z. Chen</span>*, B. Chen, Z. Jia, M. Ryabinin</p>
-            <div class="pub-badges"><span class="badge venue">NeurIPS 2024</span></div>
+            <div class="pub-badges">
+              <span class="badge venue">NeurIPS 2024</span>
+              <a class="badge link" href="https://arxiv.org/abs/2406.02532">arXiv</a>
+              <a class="badge link" href="https://github.com/yandex-research/specexec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+            </div>
           </div>
         </div>
 
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#ec4899,#f59e0b);">Magic<br>Dec</div>
           <div class="pub-info">
-            <p class="pub-title">MagicDec: Breaking the Latency-Throughput Tradeoff for Long Context Generation with Speculative Decoding</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2408.11049">MagicDec: Breaking the Latency-Throughput Tradeoff for Long Context Generation with Speculative Decoding</a></p>
             <p class="pub-authors">J. Chen, V. Tiwari, R. Sadhukhan, <span class="me">Z. Chen</span>, J. Shi, I. E. H. Yen, B. Chen</p>
-            <div class="pub-badges"><span class="badge venue">ICLR 2025</span></div>
+            <div class="pub-badges">
+              <span class="badge venue">ICLR 2025</span>
+              <a class="badge link" href="https://arxiv.org/abs/2408.11049">arXiv</a>
+              <a class="badge link" href="https://github.com/Infini-AI-Lab/MagicDec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+              <a class="badge link" href="https://infini-ai-lab.github.io/MagicDec/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Project</a>
+            </div>
           </div>
         </div>
 
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#f43f5e,#a21caf);">Siri<br>us</div>
           <div class="pub-info">
-            <p class="pub-title">Sirius: Contextual Sparsity with Correction for Efficient LLMs</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2409.03856">Sirius: Contextual Sparsity with Correction for Efficient LLMs</a></p>
             <p class="pub-authors">Y. Zhou, <span class="me">Z. Chen</span>, Z. Xu, V. Lin, B. Chen</p>
-            <div class="pub-badges"><span class="badge venue">NeurIPS 2024</span></div>
+            <div class="pub-badges">
+              <span class="badge venue">NeurIPS 2024</span>
+              <a class="badge link" href="https://arxiv.org/abs/2409.03856">arXiv</a>
+              <a class="badge link" href="https://github.com/Infini-AI-Lab/Sirius"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+              <a class="badge link" href="https://infini-ai-lab.github.io/Sirius/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Project</a>
+            </div>
           </div>
         </div>
 
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#0ea5e9,#22c55e);">Mini<br>Seq</div>
           <div class="pub-info">
-            <p class="pub-title">Mini-Sequence Transformer: Optimizing Intermediate Memory for Long Sequences Training</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2407.15892">Mini-Sequence Transformer: Optimizing Intermediate Memory for Long Sequences Training</a></p>
             <p class="pub-authors">C. Luo, J. Zhao, <span class="me">Z. Chen</span>, B. Chen, A. Anandkumar</p>
-            <div class="pub-badges"><span class="badge venue">NeurIPS 2024</span></div>
+            <div class="pub-badges">
+              <span class="badge venue">NeurIPS 2024</span>
+              <a class="badge link" href="https://arxiv.org/abs/2407.15892">arXiv</a>
+              <a class="badge link" href="https://github.com/wdlctc/mini-s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+            </div>
           </div>
         </div>
 
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#6366f1,#ec4899);">Tri<br>Force</div>
           <div class="pub-info">
-            <p class="pub-title">TriForce: Lossless Acceleration of Long Sequence Generation with Hierarchical Speculative Decoding</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2404.11912">TriForce: Lossless Acceleration of Long Sequence Generation with Hierarchical Speculative Decoding</a></p>
             <p class="pub-authors">H. Sun, <span class="me">Z. Chen</span>, X. Yang, Y. Tian, B. Chen</p>
-            <div class="pub-badges"><span class="badge venue">COLM 2024</span></div>
+            <div class="pub-badges">
+              <span class="badge venue">COLM 2024</span>
+              <a class="badge link" href="https://arxiv.org/abs/2404.11912">arXiv</a>
+              <a class="badge link" href="https://github.com/Infini-AI-Lab/TriForce"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+              <a class="badge link" href="https://infini-ai-lab.github.io/TriForce/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Project</a>
+            </div>
           </div>
         </div>
 
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#0d9488,#3b82f6);">GNN<br>Pipe</div>
           <div class="pub-info">
-            <p class="pub-title">GNNPipe: Accelerating Distributed Full-Graph GNN Training with Pipelined Model Parallelism</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2308.10087">GNNPipe: Accelerating Distributed Full-Graph GNN Training with Pipelined Model Parallelism</a></p>
             <p class="pub-authors">J. Chen, <span class="me">Z. Chen</span>, X. Qian</p>
-            <div class="pub-badges"><span class="badge sys">HPCA 2025</span></div>
+            <div class="pub-badges">
+              <span class="badge sys">HPCA 2025</span>
+              <a class="badge link" href="https://arxiv.org/abs/2308.10087">arXiv</a>
+            </div>
           </div>
         </div>
 
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#64748b,#0ea5e9);">Spec<br>Infer</div>
           <div class="pub-info">
-            <p class="pub-title">SpecInfer: Accelerating Generative LLM Serving with Speculative Inference and Token Tree Verification</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2305.09781">SpecInfer: Accelerating Generative LLM Serving with Speculative Inference and Token Tree Verification</a></p>
             <p class="pub-authors">X. Miao, G. Oliaro, Z. Zhang, X. Cheng, Z. Wang, R. Y. Y. Wong, <span class="me">Z. Chen</span>, D. Arfeen, R. Abhyankar, Z. Jia</p>
-            <div class="pub-badges"><span class="badge sys">ASPLOS 2024</span></div>
+            <div class="pub-badges">
+              <span class="badge sys">ASPLOS 2024</span>
+              <a class="badge link" href="https://arxiv.org/abs/2305.09781">arXiv</a>
+              <a class="badge link" href="https://github.com/flexflow/FlexFlow/tree/inference"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+            </div>
           </div>
         </div>
 
         <div class="pub">
           <div class="pub-thumb" style="background:linear-gradient(135deg,#a855f7,#14b8a6);">Q-<br>GBDT</div>
           <div class="pub-info">
-            <p class="pub-title">Quantized Training of Gradient Boosting Decision Trees</p>
+            <p class="pub-title"><a href="https://arxiv.org/abs/2207.09682">Quantized Training of Gradient Boosting Decision Trees</a></p>
             <p class="pub-authors">Y. Shi, G. Ke, <span class="me">Z. Chen</span>, S. Zheng, T.-Y. Liu</p>
-            <div class="pub-badges"><span class="badge venue">NeurIPS 2022</span></div>
+            <div class="pub-badges">
+              <span class="badge venue">NeurIPS 2022</span>
+              <a class="badge link" href="https://arxiv.org/abs/2207.09682">arXiv</a>
+              <a class="badge link" href="https://github.com/microsoft/LightGBM"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Code</a>
+            </div>
           </div>
         </div>
 
