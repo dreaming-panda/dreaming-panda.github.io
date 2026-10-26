@@ -1,0 +1,70 @@
+---
+title: "Lane 1 Went Missing"
+date: 2026-10-26
+description: "How checking a formal GPU semantics against real hardware, bit for bit, turned up a small ptxas miscompile in shared-memory half2 atomics."
+tags: [cuda, ptx, compilers, lean, formal-verification]
+---
+
+We weren't looking for a compiler bug. We were trying to write down, very precisely, what a GPU does. The GPU, by way of its compiler, disagreed with us. This time the compiler turned out to be the one that was wrong.
+
+## The setup
+
+We're building **KVA**, a Lean 4 library that gives a formal semantics to CUDA and PTX on NVIDIA Hopper (sm_90a). The idea is that GPU kernels can eventually be *proved* correct, not just tested. Much of the library is built by a team of AI coding agents, each owning one part: numerics, concurrency, data movement, tensor cores. (Yes, that's as fun as it sounds. Mostly.)
+
+A semantics is only useful if it describes the real machine, so we keep ours honest with a **conformance harness**. Every value-level instruction the library defines, such as float adds, conversions and atomics, is run on an H200 and compared bit for bit against its Lean definition. Some are checked exhaustively, others over large random samples. If the GPU and the definition disagree on a single bit, the test fails.
+
+## The symptom
+
+One agent was adding semantics for atomics on **shared memory**. Its tests for packed half-precision adds, `atomicAdd(__half2*)` and `atomicAdd(__nv_bfloat162*)`, started failing, and not just occasionally: roughly 57–80% of results were wrong.
+
+The failures had a pattern. A `__half2` packs two 16-bit lanes into 32 bits, and the wrong answers were *always* in the upper one, lane 1. The same operations on **global** memory passed.
+
+## The investigation
+
+The first suspect was, naturally, us. A brand-new Lean model of a fiddly instruction is a far likelier culprit than NVIDIA's toolchain.
+
+So we read the PTX that nvcc generated. It was correct.
+
+That left the step between PTX and machine code: `ptxas`, the optimising assembler. Recompiling with `-Xptxas -O0` made the failures disappear. With the same PTX and the same Lean model, the only change was turning off the optimiser.
+
+From there it was a matter of shrinking. The failing test was cut down to a tiny reproducer in plain CUDA, with no inline assembly, which left nothing exotic to blame. The coordinator re-ran it independently, and it reproduced.
+
+## The bug
+
+sm_90 has no native instruction for an atomic packed-half add on shared memory, so ptxas emulates it with a compare-and-swap loop. When the 32-bit operand happens to be **one half of a 64-bit value**, that loop reads the upper lane from the wrong register.
+
+The trigger looks unusual, but it's perfectly legitimate code: load four halves as one 64-bit word, then add them into shared memory as two `__half2`s.
+
+```cuda
+__shared__ __half2 s[...];
+unsigned long long v = x[t];                          // four halves in one 64-bit word
+atomicAdd(&s[2*t],   as_half2((unsigned)v));          // low half2: upper lane comes out wrong
+atomicAdd(&s[2*t+1], as_half2((unsigned)(v >> 32)));  // high half2
+```
+
+(`as_half2` just reinterprets 32 bits as a `__half2`.)
+
+Here's a concrete case. Add the 64-bit value `0x123456783c004000` as two `__half2`s. Its low word is `0x3c004000`, which holds the halves 2.0 (lane 0) and 1.0 (lane 1).
+
+| Low word | Lane 1 | Lane 0 |
+|---|---|---|
+| Expected: `0x3c004000` | `0x3c00` (1.0) | `0x4000` (2.0) |
+| Got: `0x56784000` | `0x5678` (103.5) | `0x4000` (2.0) |
+
+Lane 0 is right. Lane 1 holds `0x5678`, which looks suspiciously like the bottom half of the *high* word, `0x12345678`.
+
+## Who should care
+
+Probably not many people. It's a narrow bug that needs an unusual-looking pattern to show up.
+
+- **Affected:** nvcc 13.2 targeting sm_90a, running on an H200. We saw it in build V13.2.51 and in 13.2 Update 2 (V13.2.86), the latest 13.2 release.
+- **Not affected:** builds with `-Xptxas -O0`, and global memory, which has a native instruction.
+- **Workarounds:** don't feed a split 64-bit value straight into a shared-memory packed-half atomic, or compile that file with `-Xptxas -O0`.
+
+Is it already known? As far as we can tell, no. We found no public report, and the [CUDA 13.2 Update 2 release notes](https://docs.nvidia.com/cuda/archive/13.2.2/pdf/CUDA_Toolkit_Release_Notes.pdf) don't list it. The closest thing we found is a [2024 NVIDIA forum thread](https://forums.developer.nvidia.com/t/half2-atomics-generate-unused-code/301822) that noticed this same compare-and-swap code path generating strange, unused code. Nobody there reported wrong results.
+
+## The takeaway
+
+A formal semantics is only as good as its contact with reality. Checking every definition against the hardware, one bit at a time, is what keeps ours honest. This time it also caught someone else's mistake. Ordinary testing would likely have missed this one, because it only appears in a pattern most tests never write.
+
+It also cost us a little philosophical tidiness. KVA's stance has always been that we trust the compiler, and we still do, with a small asterisk now attached. The library keeps a "known miscompiles" list, and lane 1 is on it.
