@@ -87,13 +87,36 @@ HADD2 R2, R6.H1_H1, RZ.H0_H0      // high pair, upper lane: should be R3.H1_H1
 
 We saw exactly this output with nvcc 13.2 builds V13.2.51 and V13.2.86 (13.2 Update 2), for both `-arch=sm_90a` and `-arch=sm_90`, on an H200. Register numbers may differ on other toolchains.
 
+### What does and doesn't trigger it
+
+A natural first guess is alignment. The upper lane sits two bytes into the word, so maybe something reads at the wrong byte offset. It isn't alignment. We added the same four halves in twelve different ways with **[lane1_variants.cu](/assets/lane1/lane1_variants.cu)** (build and run it the same way):
+
+| How the four halves are added | nvcc 13.2, default |
+|---|---|
+| `atomicAdd(__half2*)` on shared memory, the two words of a 64-bit value | **wrong** |
+| … with the 64-bit value passed as a kernel parameter, so no memory load at all | **wrong** |
+| … with the shared targets moved to other offsets, or into separate 16-byte-aligned arrays | **wrong** |
+| … with the same 8 bytes loaded as a `uint2` (two 32-bit words) | right |
+| … with the 64-bit value built from two 32-bit loads | right |
+| a hand-written `atomicCAS` loop doing the same `__half2` add | right |
+| `atomicAdd(__half*)` one half at a time, or `atomicAdd(float*)` | right |
+| a plain `__hadd2` with no atomic, on shared memory or in registers | right |
+| the first pattern on global memory | right |
+
+With `-Xptxas -O0`, every case is right on both toolchains.
+
+Moving the data around changes nothing, and the kernel-parameter case goes wrong without touching memory at all. (A truly misaligned access on a GPU faults loudly. It doesn't hand back a plausible wrong number.) What matters is where the operand comes from: a 32-bit word cut out of a 64-bit integer. In the machine code, lane 1 is always read from 16 bits too far along. For the low pair it reads bits 32–47 instead of 16–31. For the high pair it reads "bits 64–79", which don't exist, so it gets zero. Our guess is that ptxas looks for the operand's upper half at the width of the 64-bit value instead of the 32-bit word. That is only a guess from the outside, since we can't see inside ptxas.
+
 ## Who should care
 
 Probably not many people. It's a narrow bug that needs an unusual-looking pattern to show up.
 
 - **Affected:** nvcc 13.2 targeting sm_90 or sm_90a, running on an H200. We saw it in build V13.2.51 and in 13.2 Update 2 (V13.2.86), the latest 13.2 release.
-- **Not affected:** builds with `-Xptxas -O0`, and global memory, which has a native instruction.
-- **Workarounds:** don't feed a split 64-bit value straight into a shared-memory packed-half atomic, or compile that file with `-Xptxas -O0`.
+- **Not affected:** builds with `-Xptxas -O0`; global memory, which has a native instruction; single-half and `float` atomics; plain `__hadd2`.
+- **Workarounds** (each gave the right answer in our tests, but check the SASS of your own kernel):
+  - load the 8 bytes as a `uint2`, or as two 32-bit words, instead of a `uint64_t`;
+  - write the compare-and-swap loop yourself, with `atomicCAS` and `__hadd2`;
+  - compile the affected file with `-Xptxas -O0`. This is a heavy hammer, because it turns off ptxas's optimiser for the whole file.
 
 Is it already known? As far as we can tell, no. We found no public report, and the [CUDA 13.2 Update 2 release notes](https://docs.nvidia.com/cuda/archive/13.2.2/pdf/CUDA_Toolkit_Release_Notes.pdf) don't list it. The closest thing we found is a [2024 NVIDIA forum thread](https://forums.developer.nvidia.com/t/half2-atomics-generate-unused-code/301822) that noticed this same compare-and-swap code path generating strange, unused code. Nobody there reported wrong results.
 
