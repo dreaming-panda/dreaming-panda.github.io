@@ -1,0 +1,25 @@
+---
+layout: base
+title: Blog
+description: "Posts by Zhuoming Chen."
+---
+<section class="blog-index">
+  <div class="sec-head"><h2>Blog</h2><div class="rule"></div></div>
+  <div class="news-list">
+    {% for post in site.posts %}
+    <div class="news-item">
+      <div class="news-date">{{ post.date | date: "%b %-d, %Y" }}</div>
+      <div class="news-body">
+        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        {% if post.description %}<span class="post-desc">{{ post.description | escape }}</span>{% endif %}
+      </div>
+    </div>
+    {% else %}
+    <div class="news-item"><div class="news-body">No posts yet.</div></div>
+    {% endfor %}
+  </div>
+</section>
+
+<footer>
+  <a href="{{ '/' | relative_url }}">← Home</a>
+</footer>

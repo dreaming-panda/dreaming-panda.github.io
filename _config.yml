@@ -1,0 +1,24 @@
+# Minimal Jekyll config for the blog.
+# The homepage (index.html) and everything under data/, images/, mipnerf/ and
+# mipnerf360/ have no front matter, so Jekyll copies them unchanged.
+# Only _posts/ and blog/index.html are templated.
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+permalink: /blog/:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

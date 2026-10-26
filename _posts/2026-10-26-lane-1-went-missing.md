@@ -27,7 +27,7 @@ So we read the PTX that nvcc generated. It was correct.
 
 That left the step between PTX and machine code: `ptxas`, the optimising assembler. Recompiling with `-Xptxas -O0` made the failures disappear. With the same PTX and the same Lean model, the only change was turning off the optimiser.
 
-From there it was a matter of shrinking. The failing test was cut down to a tiny reproducer in plain CUDA, with no inline assembly, which left nothing exotic to blame. The coordinator re-ran it independently, and it reproduced.
+From there it was a matter of shrinking. The failing test was cut down to a tiny reproducer in plain CUDA, with no inline assembly, which left nothing exotic to blame. A second agent re-ran it independently, and it reproduced.
 
 ## The bug
 

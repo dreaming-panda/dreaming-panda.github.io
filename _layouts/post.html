@@ -1,0 +1,17 @@
+---
+layout: base
+---
+<article class="post">
+  <header class="post-header">
+    <h1>{{ page.title | escape }}</h1>
+    <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+  </header>
+
+  <div class="post-body">
+{{ content }}
+  </div>
+</article>
+
+<footer>
+  <a href="{{ '/' | relative_url }}">← Home</a> · <a href="{{ '/blog/' | relative_url }}">Blog</a>
+</footer>
