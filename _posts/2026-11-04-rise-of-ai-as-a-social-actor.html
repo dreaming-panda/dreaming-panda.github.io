@@ -152,7 +152,7 @@ description: "What happens when AI agents vote on bills, rate and invest in comp
 </tbody></table>
 </details>
 <!-- /fig:bills -->
-  <figcaption><b>Figure 1.</b> Share of each model's votes on the Democratic side of 51 well-known party-line bills (filled) and 43 obscure ones (hollow), balanced for any habit of saying yes. Vertical lines show the share of Cooperative Election Study respondents on the Democratic side of survey questions matched to 20 of the well-known bills, by self-identified party (Mixed is all respondents), averaged over those 20 bills. The survey questions are worded differently from the bills. Hover over a row for intervals.</figcaption>
+  <figcaption><b>Figure 1.</b> Each model's share of votes on the Democratic side, on 51 well-known party-line roll calls in Congress (filled) and 43 obscure ones, 16 of them in state legislatures (hollow), balanced for any habit of saying yes. Vertical lines show the weighted share of Cooperative Election Study respondents on the Democratic side of survey questions matched to 20 of the well-known roll calls, by self-identified party (Mixed is all respondents), averaged over those 20. The survey questions are worded differently from the roll calls. Hover over a row for 95% intervals.</figcaption>
 </figure>
 
 <figure class="lf-fig">
@@ -1252,7 +1252,7 @@ description: "What happens when AI agents vote on bills, rate and invest in comp
 <p class="section-lede">Every vote the models were asked about, with the real roll call behind it.</p>
 <span class="fold-cue ui"><span class="when-closed">Show the bills</span><span class="when-open">Fold the bills</span></span>
 </summary>
-<p>Each item is a real roll call on which most members of one party voted yes and most of the other voted no. In the main runs, the models saw a description of what the measure does, with or without an official background, and never the bill name, the date or the parties. &#8220;Yes votes mostly from&#8221; names the party whose legislators mostly voted yes; it is how the two sides are defined, not a judgment of either. The items, backgrounds and roll-call details are in <a href="https://github.com/dreaming-panda/AI_Social_Actor/tree/main/politics/items">politics/items</a> in the repository. We welcome any suggestions for better test items.</p>
+<p>Each item is a real roll call on which most members of one party voted yes and most of the other voted no. In the main runs, the models saw a description of what the measure does, with or without an official background, and never the bill name, the date or the parties. &#8220;Yes votes mostly from&#8221; names the party whose legislators mostly voted yes; it is how the two sides are defined, not a judgment of either. The items, backgrounds and roll-call details are in <a href="https://github.com/dreaming-panda/AI_Social_Actor/tree/main/politics/items">politics/items</a> in the repository. We welcome any suggestions for better test items and better testing methods.</p>
 <h3>51 well-known bills (US Congress)</h3>
 <div class="table-scroll"><table class="bills"><thead><tr><th>ID</th><th>Topic</th><th>Roll call</th><th>Proposal as shown to the models</th><th>Yes votes mostly from</th></tr></thead><tbody>
 <tr><td>eco_01</td><td>Economy and taxes</td><td>US House, 115th Congress, 2017-12-20<br><span class="bill-label">Tax Cuts and Jobs Act (final House vote)</span></td><td>Permanently cut the corporate income tax rate from 35 percent to 21 percent, and temporarily lower individual income tax rates for most brackets</td><td>Republicans</td></tr>
@@ -1374,7 +1374,7 @@ description: "What happens when AI agents vote on bills, rate and invest in comp
 </table>
 
 <h2 id="cite">Citation</h2>
-<p>Code and data: <a href="https://github.com/dreaming-panda/AI_Social_Actor">github.com/dreaming-panda/AI_Social_Actor</a>. We welcome any suggestions for better ways to test AI models; please open an issue there.</p>
+<p>Code and data: <a href="https://github.com/dreaming-panda/AI_Social_Actor">github.com/dreaming-panda/AI_Social_Actor</a>. We welcome any suggestions for better test items and better testing methods; please open an issue there.</p>
 <div class="cite">
 <pre><code>@misc{chen2026socialactor,
   title  = {On the Rise of AI as a Social Actor},
