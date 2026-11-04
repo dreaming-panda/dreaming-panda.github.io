@@ -1,0 +1,1275 @@
+---
+layout: longform
+title: "On the Rise of AI as a Social Actor"
+headline_blue: "On the Rise of AI"
+headline_red: "as a Social Actor"
+kicker: "Research"
+authors: ["Zhuoming Chen"]
+date: 2026-11-04
+description: "What happens when AI agents vote on bills, rate and invest in companies, and read each other's writing before making a decision."
+---
+
+<div class="lead-wide">
+<div class="abstract">
+  <span class="label">Abstract</span>
+  <p>Large language model (LLM) agents increasingly search, advise and act on behalf of large numbers of people. We study how nine frontier models from eight developers form judgments, both as conversational models and as autonomous agents with web access, in three domains: political questions, the evaluation of companies, and influence between agents. Political questions serve as a measurement instrument, because they come with documented human positions to compare against; we do not assess the merits of any side. On 51 well-known party-line roll-call votes in the US Congress, presented without party cues, the nine models give nearly identical answers, siding with the position taken by most congressional Democrats on 80% to 98% of their votes; on 43 obscure party-line votes, the same models land near an even split. Models from competing developers in two countries thus converge on the same judgments where the topic is widely discussed, and hold weak judgments where it is not. We discuss what such homogeneous judgments, replicated across many deployed copies, imply for the diversity of views that informs collective decisions and for the role of the organizations that build and serve the models.</p>
+</div>
+
+<div class="fig-pair">
+<figure class="lf-fig">
+<!-- fig:bills -->
+<div class="fig-frame">
+<svg class="chart" viewBox="0 0 720 512" role="img" aria-labelledby="fig1-title fig1-desc">
+<title id="fig1-title">Share of votes on the Democratic side, by model, on well-known and obscure bills</title>
+<desc id="fig1-desc">On 51 well-known party-line bills every model votes with the Democratic side 80 to 98 percent of the time; on 43 obscure bills every model is near an even split.</desc>
+<defs><linearGradient id="fig1-bg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="var(--party-d)" stop-opacity="0.16"/><stop offset="0.5" stop-color="var(--party-d)" stop-opacity="0"/><stop offset="0.5" stop-color="var(--party-r)" stop-opacity="0"/><stop offset="1" stop-color="var(--party-r)" stop-opacity="0.16"/></linearGradient></defs>
+<rect x="200" y="60" width="496" height="346" rx="10" fill="url(#fig1-bg)"/>
+<g class="legend"><circle cx="206" cy="20" r="6" class="dot-main"/><text x="218" y="24">51 well-known bills</text>
+<circle cx="378" cy="20" r="6" class="dot-low"/><text x="390" y="24">43 obscure bills</text></g>
+<text class="axis-word" x="200" y="50">← Democratic side</text>
+<text class="axis-word" x="448.0" y="50" text-anchor="middle">even split</text>
+<text class="axis-word" x="696" y="50" text-anchor="end">Republican side →</text>
+<line class="grid" x1="200.0" x2="200.0" y1="60" y2="406"/>
+<line class="grid" x1="324.0" x2="324.0" y1="60" y2="406"/>
+<line class="grid-mid" x1="448.0" x2="448.0" y1="60" y2="406"/>
+<line class="grid" x1="572.0" x2="572.0" y1="60" y2="406"/>
+<line class="grid" x1="696.0" x2="696.0" y1="60" y2="406"/>
+<g class="row pub" tabindex="0" data-tip="&lt;b&gt;Democrats&lt;/b&gt;&lt;br&gt;81% on the Democratic side, on average over the 20 bills matched to Cooperative Election Study questions">
+<line class="hit-line" x1="296.1" x2="296.1" y1="60" y2="418"/>
+<line class="pub-line pub-d" x1="296.1" x2="296.1" y1="60" y2="418"/>
+<text class="pub-label" x="296.1" y="434" text-anchor="middle">Democrats</text>
+<text class="pub-label pub-num" x="296.1" y="449" text-anchor="middle">81%</text>
+</g>
+<g class="row pub" tabindex="0" data-tip="&lt;b&gt;Mixed&lt;/b&gt;&lt;br&gt;58% on the Democratic side, on average over the 20 bills matched to Cooperative Election Study questions">
+<line class="hit-line" x1="409.7" x2="409.7" y1="60" y2="418"/>
+<line class="pub-line pub-all" x1="409.7" x2="409.7" y1="60" y2="418"/>
+<text class="pub-label" x="409.7" y="434" text-anchor="middle">Mixed</text>
+<text class="pub-label pub-num" x="409.7" y="449" text-anchor="middle">58%</text>
+</g>
+<g class="row pub" tabindex="0" data-tip="&lt;b&gt;Republicans&lt;/b&gt;&lt;br&gt;34% on the Democratic side, on average over the 20 bills matched to Cooperative Election Study questions">
+<line class="hit-line" x1="528.3" x2="528.3" y1="60" y2="418"/>
+<line class="pub-line pub-r" x1="528.3" x2="528.3" y1="60" y2="418"/>
+<text class="pub-label" x="528.3" y="434" text-anchor="middle">Republicans</text>
+<text class="pub-label pub-num" x="528.3" y="449" text-anchor="middle">34%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;GPT-6 Luna&lt;/b&gt;&lt;br&gt;Well-known bills: 98% of votes on the Democratic side (95% interval 95–100%)&lt;br&gt;Obscure bills: 49% (39–59%)">
+<rect class="hit" x="0" y="61.0" width="720" height="38"/>
+<text class="label" x="6" y="84.5">GPT-6 Luna</text>
+<line class="stem" x1="209.92" x2="452.96000000000004" y1="80" y2="80"/>
+<circle class="dot-low" cx="452.96000000000004" cy="80" r="6"/>
+<circle class="dot-main" cx="209.92" cy="80" r="6.5"/>
+<text class="value" x="197.92" y="84.5" text-anchor="end">98%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Beam 1.0&lt;/b&gt;&lt;br&gt;Well-known bills: 97% of votes on the Democratic side (95% interval 94–99%)&lt;br&gt;Obscure bills: 48% (38–59%)">
+<rect class="hit" x="0" y="99.0" width="720" height="38"/>
+<text class="label" x="6" y="122.5">Beam 1.0</text>
+<line class="stem" x1="214.88" x2="455.44" y1="118" y2="118"/>
+<circle class="dot-low" cx="455.44" cy="118" r="6"/>
+<circle class="dot-main" cx="214.88" cy="118" r="6.5"/>
+<text class="value" x="202.88" y="122.5" text-anchor="end">97%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;GPT-6.1 Terra&lt;/b&gt;&lt;br&gt;Well-known bills: 97% of votes on the Democratic side (95% interval 92–100%)&lt;br&gt;Obscure bills: 46% (35–56%)">
+<rect class="hit" x="0" y="137.0" width="720" height="38"/>
+<text class="label" x="6" y="160.5">GPT-6.1 Terra</text>
+<line class="stem" x1="214.88" x2="467.84" y1="156" y2="156"/>
+<circle class="dot-low" cx="467.84" cy="156" r="6"/>
+<circle class="dot-main" cx="214.88" cy="156" r="6.5"/>
+<text class="value" x="202.88" y="160.5" text-anchor="end">97%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;DeepSeek V4.1 Flash 1017&lt;/b&gt;&lt;br&gt;Well-known bills: 96% of votes on the Democratic side (95% interval 92–99%)&lt;br&gt;Obscure bills: 42% (32–52%)">
+<rect class="hit" x="0" y="175.0" width="720" height="38"/>
+<text class="label" x="6" y="198.5">DeepSeek V4.1 Flash 1017</text>
+<line class="stem" x1="219.84" x2="490.16" y1="194" y2="194"/>
+<circle class="dot-low" cx="490.16" cy="194" r="6"/>
+<circle class="dot-main" cx="219.84" cy="194" r="6.5"/>
+<text class="value" x="207.84" y="198.5" text-anchor="end">96%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;GLM 5.3 Flash&lt;/b&gt;&lt;br&gt;Well-known bills: 91% of votes on the Democratic side (95% interval 86–96%)&lt;br&gt;Obscure bills: 45% (38–52%)">
+<rect class="hit" x="0" y="213.0" width="720" height="38"/>
+<text class="label" x="6" y="236.5">GLM 5.3 Flash</text>
+<line class="stem" x1="244.64000000000007" x2="472.8" y1="232" y2="232"/>
+<circle class="dot-low" cx="472.8" cy="232" r="6"/>
+<circle class="dot-main" cx="244.64000000000007" cy="232" r="6.5"/>
+<text class="value" x="232.64000000000007" y="236.5" text-anchor="end">91%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Muse Wonder&lt;/b&gt;&lt;br&gt;Well-known bills: 91% of votes on the Democratic side (95% interval 84–97%)&lt;br&gt;Obscure bills: 46% (36–55%)">
+<rect class="hit" x="0" y="251.0" width="720" height="38"/>
+<text class="label" x="6" y="274.5">Muse Wonder</text>
+<line class="stem" x1="244.64000000000007" x2="467.84" y1="270" y2="270"/>
+<circle class="dot-low" cx="467.84" cy="270" r="6"/>
+<circle class="dot-main" cx="244.64000000000007" cy="270" r="6.5"/>
+<text class="value" x="232.64000000000007" y="274.5" text-anchor="end">91%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Grok 4.7&lt;/b&gt;&lt;br&gt;Well-known bills: 85% of votes on the Democratic side (95% interval 76–92%)&lt;br&gt;Obscure bills: 48% (37–59%)">
+<rect class="hit" x="0" y="289.0" width="720" height="38"/>
+<text class="label" x="6" y="312.5">Grok 4.7</text>
+<line class="stem" x1="274.4" x2="457.92" y1="308" y2="308"/>
+<circle class="dot-low" cx="457.92" cy="308" r="6"/>
+<circle class="dot-main" cx="274.4" cy="308" r="6.5"/>
+<text class="value" x="262.4" y="312.5" text-anchor="end">85%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;MiniMax M3.1 Flash&lt;/b&gt;&lt;br&gt;Well-known bills: 81% of votes on the Democratic side (95% interval 75–86%)&lt;br&gt;Obscure bills: 50% (44–55%)">
+<rect class="hit" x="0" y="327.0" width="720" height="38"/>
+<text class="label" x="6" y="350.5">MiniMax M3.1 Flash</text>
+<line class="stem" x1="294.24" x2="450.48" y1="346" y2="346"/>
+<circle class="dot-low" cx="450.48" cy="346" r="6"/>
+<circle class="dot-main" cx="294.24" cy="346" r="6.5"/>
+<text class="value" x="282.24" y="350.5" text-anchor="end">81%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Claude Haiku 5.5&lt;/b&gt;&lt;br&gt;Well-known bills: 80% of votes on the Democratic side (95% interval 71–88%)&lt;br&gt;Obscure bills: 52% (42–61%)">
+<rect class="hit" x="0" y="365.0" width="720" height="38"/>
+<text class="label" x="6" y="388.5">Claude Haiku 5.5</text>
+<line class="stem" x1="301.68" x2="438.08000000000004" y1="384" y2="384"/>
+<circle class="dot-low" cx="438.08000000000004" cy="384" r="6"/>
+<circle class="dot-main" cx="301.68" cy="384" r="6.5"/>
+<text class="value" x="289.68" y="388.5" text-anchor="end">80%</text>
+</g>
+<text class="tick" x="200.0" y="468" text-anchor="middle">100%</text>
+<text class="tick" x="324.0" y="468" text-anchor="middle">75%</text>
+<text class="tick" x="448.0" y="468" text-anchor="middle">50%</text>
+<text class="tick" x="572.0" y="468" text-anchor="middle">25%</text>
+<text class="tick" x="696.0" y="468" text-anchor="middle">0%</text>
+<text class="tick axis-title" x="448.0" y="490" text-anchor="middle">share of votes on the Democratic side</text>
+</svg>
+</div>
+<details class="fig-data"><summary>Show the numbers</summary>
+<table><thead><tr><th>Model</th><th class="num">Well-known bills</th><th class="num">Obscure bills</th></tr></thead><tbody>
+<tr><td>GPT-6 Luna</td><td class="num">98%</td><td class="num">49%</td></tr>
+<tr><td>Beam 1.0</td><td class="num">97%</td><td class="num">48%</td></tr>
+<tr><td>GPT-6.1 Terra</td><td class="num">97%</td><td class="num">46%</td></tr>
+<tr><td>DeepSeek V4.1 Flash 1017</td><td class="num">96%</td><td class="num">42%</td></tr>
+<tr><td>GLM 5.3 Flash</td><td class="num">91%</td><td class="num">45%</td></tr>
+<tr><td>Muse Wonder</td><td class="num">91%</td><td class="num">46%</td></tr>
+<tr><td>Grok 4.7</td><td class="num">85%</td><td class="num">48%</td></tr>
+<tr><td>MiniMax M3.1 Flash</td><td class="num">81%</td><td class="num">50%</td></tr>
+<tr><td>Claude Haiku 5.5</td><td class="num">80%</td><td class="num">52%</td></tr>
+</tbody></table>
+<table><thead><tr><th>Americans (Cooperative Election Study, 20 matched bills)</th><th class="num">Democratic side</th></tr></thead><tbody>
+<tr><td>Democrats</td><td class="num">81%</td></tr>
+<tr><td>Mixed</td><td class="num">58%</td></tr>
+<tr><td>Republicans</td><td class="num">34%</td></tr>
+</tbody></table>
+</details>
+<!-- /fig:bills -->
+  <figcaption><b>Figure 1.</b> Share of each model's votes on the Democratic side of 51 well-known party-line bills (filled) and 43 obscure ones (hollow), balanced for any habit of saying yes. Vertical lines show how Americans answered the same policies in the Cooperative Election Study, by self-identified party (Mixed is all respondents), averaged over the 20 well-known bills that match its questions. Hover over a row for intervals.</figcaption>
+</figure>
+
+<figure class="lf-fig">
+<!-- fig:invest -->
+<div class="fig-frame">
+<svg class="chart" viewBox="0 0 720 576" role="img" aria-labelledby="figw-title figw-desc">
+<title id="figw-title">Average portfolio weight the AI agents gave each of 16 companies</title>
+<desc id="figw-desc">Alphabet, NVIDIA, Microsoft and Berkshire Hathaway received the most, 12 to 14 percent each. The AI labs received the least: OpenAI, SpaceX, Mistral, DeepSeek and Reflection AI under 3 percent; Anthropic and Meta 6 to 7 percent.</desc>
+<g class="legend"><rect x="154" y="12" width="22" height="11" rx="3" class="bar-maker"/><text x="184" y="22">maker of a model in the study</text>
+<rect x="384" y="12" width="22" height="11" rx="3" class="bar-other"/><text x="414" y="22">other company</text>
+<circle cx="534" cy="17.5" r="4" class="dot-model"/><text x="544" y="22">one model&#8217;s average</text></g>
+<line class="grid" x1="214.0" x2="214.0" y1="52" y2="536"/>
+<text class="tick" x="214.0" y="554" text-anchor="middle">0%</text>
+<line class="grid" x1="299.2" x2="299.2" y1="52" y2="536"/>
+<text class="tick" x="299.2" y="554" text-anchor="middle">5%</text>
+<line class="grid" x1="384.4" x2="384.4" y1="52" y2="536"/>
+<text class="tick" x="384.4" y="554" text-anchor="middle">10%</text>
+<line class="grid" x1="469.6" x2="469.6" y1="52" y2="536"/>
+<text class="tick" x="469.6" y="554" text-anchor="middle">15%</text>
+<line class="grid" x1="554.8" x2="554.8" y1="52" y2="536"/>
+<text class="tick" x="554.8" y="554" text-anchor="middle">20%</text>
+<line class="grid" x1="640.0" x2="640.0" y1="52" y2="536"/>
+<text class="tick" x="640.0" y="554" text-anchor="middle">25%</text>
+<line class="grid-mid" x1="320.5" x2="320.5" y1="52" y2="536"/>
+<text class="tick" x="324.5" y="46">equal split</text>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Alphabet (Google)&lt;/b&gt;&lt;br&gt;Average weight: 14.3%&lt;br&gt;Model averages (four portfolios each): 10.0% to 17.8%&lt;br&gt;Held in 36 of 36 single portfolios">
+<rect class="hit" x="0" y="55.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="70" r="11.5"/><text x="18" y="73.6" text-anchor="middle">GO</text></g>
+<text class="label" x="38" y="75">Alphabet (Google)</text>
+<rect class="bar-other" x="214" y="64" width="243.3" height="12" rx="4"/>
+<circle class="dot-model" cx="495.2" cy="70" r="3.5"/>
+<circle class="dot-model" cx="516.5" cy="70" r="3.5"/>
+<circle class="dot-model" cx="418.5" cy="70" r="3.5"/>
+<circle class="dot-model" cx="503.7" cy="70" r="3.5"/>
+<circle class="dot-model" cx="473.9" cy="70" r="3.5"/>
+<circle class="dot-model" cx="452.6" cy="70" r="3.5"/>
+<circle class="dot-model" cx="384.4" cy="70" r="3.5"/>
+<circle class="dot-model" cx="397.2" cy="70" r="3.5"/>
+<circle class="dot-model" cx="473.9" cy="70" r="3.5"/>
+<text class="value" x="714" y="75" text-anchor="end">14.3%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;NVIDIA&lt;/b&gt;&lt;br&gt;Average weight: 11.9%&lt;br&gt;Model averages (four portfolios each): 3.8% to 16.8%&lt;br&gt;Held in 35 of 36 single portfolios">
+<rect class="hit" x="0" y="85.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="100" r="11.5"/><text x="18" y="103.6" text-anchor="middle">NV</text></g>
+<text class="label" x="38" y="105">NVIDIA</text>
+<rect class="bar-other" x="214" y="94" width="203.1" height="12" rx="4"/>
+<circle class="dot-model" cx="392.9" cy="100" r="3.5"/>
+<circle class="dot-model" cx="277.9" cy="100" r="3.5"/>
+<circle class="dot-model" cx="358.8" cy="100" r="3.5"/>
+<circle class="dot-model" cx="473.9" cy="100" r="3.5"/>
+<circle class="dot-model" cx="478.1" cy="100" r="3.5"/>
+<circle class="dot-model" cx="427.0" cy="100" r="3.5"/>
+<circle class="dot-model" cx="499.4" cy="100" r="3.5"/>
+<circle class="dot-model" cx="422.7" cy="100" r="3.5"/>
+<circle class="dot-model" cx="422.7" cy="100" r="3.5"/>
+<text class="value" x="714" y="105" text-anchor="end">11.9%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Microsoft&lt;/b&gt;&lt;br&gt;Average weight: 11.8%&lt;br&gt;Model averages (four portfolios each): 9.2% to 15.0%&lt;br&gt;Held in 36 of 36 single portfolios">
+<rect class="hit" x="0" y="115.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="130" r="11.5"/><text x="18" y="133.6" text-anchor="middle">MS</text></g>
+<text class="label" x="38" y="135">Microsoft</text>
+<rect class="bar-other" x="214" y="124" width="201.6" height="12" rx="4"/>
+<circle class="dot-model" cx="444.0" cy="130" r="3.5"/>
+<circle class="dot-model" cx="448.3" cy="130" r="3.5"/>
+<circle class="dot-model" cx="384.4" cy="130" r="3.5"/>
+<circle class="dot-model" cx="422.7" cy="130" r="3.5"/>
+<circle class="dot-model" cx="371.6" cy="130" r="3.5"/>
+<circle class="dot-model" cx="401.4" cy="130" r="3.5"/>
+<circle class="dot-model" cx="469.6" cy="130" r="3.5"/>
+<circle class="dot-model" cx="401.4" cy="130" r="3.5"/>
+<circle class="dot-model" cx="397.2" cy="130" r="3.5"/>
+<text class="value" x="714" y="135" text-anchor="end">11.8%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Berkshire Hathaway&lt;/b&gt;&lt;br&gt;Average weight: 11.7%&lt;br&gt;Model averages (four portfolios each): 6.8% to 22.0%&lt;br&gt;Held in 36 of 36 single portfolios">
+<rect class="hit" x="0" y="145.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="160" r="11.5"/><text x="18" y="163.6" text-anchor="middle">BH</text></g>
+<text class="label" x="38" y="165">Berkshire Hathaway</text>
+<rect class="bar-other" x="214" y="154" width="198.8" height="12" rx="4"/>
+<circle class="dot-model" cx="499.4" cy="160" r="3.5"/>
+<circle class="dot-model" cx="588.9" cy="160" r="3.5"/>
+<circle class="dot-model" cx="388.7" cy="160" r="3.5"/>
+<circle class="dot-model" cx="439.8" cy="160" r="3.5"/>
+<circle class="dot-model" cx="329.0" cy="160" r="3.5"/>
+<circle class="dot-model" cx="350.3" cy="160" r="3.5"/>
+<circle class="dot-model" cx="333.3" cy="160" r="3.5"/>
+<circle class="dot-model" cx="363.1" cy="160" r="3.5"/>
+<circle class="dot-model" cx="422.7" cy="160" r="3.5"/>
+<text class="value" x="714" y="165" text-anchor="end">11.7%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Amazon&lt;/b&gt;&lt;br&gt;Average weight: 9.7%&lt;br&gt;Model averages (four portfolios each): 7.8% to 11.5%&lt;br&gt;Held in 36 of 36 single portfolios">
+<rect class="hit" x="0" y="175.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="190" r="11.5"/><text x="18" y="193.6" text-anchor="middle">AM</text></g>
+<text class="label" x="38" y="195">Amazon</text>
+<rect class="bar-other" x="214" y="184" width="164.7" height="12" rx="4"/>
+<circle class="dot-model" cx="397.2" cy="190" r="3.5"/>
+<circle class="dot-model" cx="384.4" cy="190" r="3.5"/>
+<circle class="dot-model" cx="346.1" cy="190" r="3.5"/>
+<circle class="dot-model" cx="397.2" cy="190" r="3.5"/>
+<circle class="dot-model" cx="380.1" cy="190" r="3.5"/>
+<circle class="dot-model" cx="410.0" cy="190" r="3.5"/>
+<circle class="dot-model" cx="371.6" cy="190" r="3.5"/>
+<circle class="dot-model" cx="354.6" cy="190" r="3.5"/>
+<circle class="dot-model" cx="367.4" cy="190" r="3.5"/>
+<text class="value" x="714" y="195" text-anchor="end">9.7%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Eli Lilly&lt;/b&gt;&lt;br&gt;Average weight: 8.2%&lt;br&gt;Model averages (four portfolios each): 6.0% to 13.2%&lt;br&gt;Held in 36 of 36 single portfolios">
+<rect class="hit" x="0" y="205.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="220" r="11.5"/><text x="18" y="223.6" text-anchor="middle">EL</text></g>
+<text class="label" x="38" y="225">Eli Lilly</text>
+<rect class="bar-other" x="214" y="214" width="140.6" height="12" rx="4"/>
+<circle class="dot-model" cx="341.8" cy="220" r="3.5"/>
+<circle class="dot-model" cx="324.8" cy="220" r="3.5"/>
+<circle class="dot-model" cx="324.8" cy="220" r="3.5"/>
+<circle class="dot-model" cx="439.8" cy="220" r="3.5"/>
+<circle class="dot-model" cx="363.1" cy="220" r="3.5"/>
+<circle class="dot-model" cx="358.8" cy="220" r="3.5"/>
+<circle class="dot-model" cx="363.1" cy="220" r="3.5"/>
+<circle class="dot-model" cx="358.8" cy="220" r="3.5"/>
+<circle class="dot-model" cx="316.2" cy="220" r="3.5"/>
+<text class="value" x="714" y="225" text-anchor="end">8.2%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Meta&lt;/b&gt; (AI maker)&lt;br&gt;Average weight: 7.5%&lt;br&gt;Model averages (four portfolios each): 6.0% to 9.8%&lt;br&gt;Held in 36 of 36 single portfolios">
+<rect class="hit" x="0" y="235.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="250" r="11.5"/><text x="18" y="253.6" text-anchor="middle">MT</text></g>
+<text class="label maker" x="38" y="255">Meta</text>
+<rect class="bar-maker" x="214" y="244" width="127.3" height="12" rx="4"/>
+<circle class="dot-model" cx="380.1" cy="250" r="3.5"/>
+<circle class="dot-model" cx="324.8" cy="250" r="3.5"/>
+<circle class="dot-model" cx="316.2" cy="250" r="3.5"/>
+<circle class="dot-model" cx="358.8" cy="250" r="3.5"/>
+<circle class="dot-model" cx="341.8" cy="250" r="3.5"/>
+<circle class="dot-model" cx="358.8" cy="250" r="3.5"/>
+<circle class="dot-model" cx="320.5" cy="250" r="3.5"/>
+<circle class="dot-model" cx="324.8" cy="250" r="3.5"/>
+<circle class="dot-model" cx="346.1" cy="250" r="3.5"/>
+<text class="value" x="714" y="255" text-anchor="end">7.5%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Anthropic&lt;/b&gt; (AI maker)&lt;br&gt;Average weight: 5.9%&lt;br&gt;Model averages (four portfolios each): 0.8% to 11.8%&lt;br&gt;Held in 28 of 36 single portfolios">
+<rect class="hit" x="0" y="265.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="280" r="11.5"/><text x="18" y="283.6" text-anchor="middle">AN</text></g>
+<text class="label maker" x="38" y="285">Anthropic</text>
+<rect class="bar-maker" x="214" y="274" width="100.3" height="12" rx="4"/>
+<circle class="dot-model" cx="248.1" cy="280" r="3.5"/>
+<circle class="dot-model" cx="226.8" cy="280" r="3.5"/>
+<circle class="dot-model" cx="414.2" cy="280" r="3.5"/>
+<circle class="dot-model" cx="277.9" cy="280" r="3.5"/>
+<circle class="dot-model" cx="397.2" cy="280" r="3.5"/>
+<circle class="dot-model" cx="316.2" cy="280" r="3.5"/>
+<circle class="dot-model" cx="363.1" cy="280" r="3.5"/>
+<circle class="dot-model" cx="299.2" cy="280" r="3.5"/>
+<circle class="dot-model" cx="286.4" cy="280" r="3.5"/>
+<text class="value" x="714" y="285" text-anchor="end">5.9%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;ExxonMobil&lt;/b&gt;&lt;br&gt;Average weight: 4.5%&lt;br&gt;Model averages (four portfolios each): 0.5% to 9.8%&lt;br&gt;Held in 29 of 36 single portfolios">
+<rect class="hit" x="0" y="295.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="310" r="11.5"/><text x="18" y="313.6" text-anchor="middle">XM</text></g>
+<text class="label" x="38" y="315">ExxonMobil</text>
+<rect class="bar-other" x="214" y="304" width="77.2" height="12" rx="4"/>
+<circle class="dot-model" cx="299.2" cy="310" r="3.5"/>
+<circle class="dot-model" cx="380.1" cy="310" r="3.5"/>
+<circle class="dot-model" cx="286.4" cy="310" r="3.5"/>
+<circle class="dot-model" cx="260.9" cy="310" r="3.5"/>
+<circle class="dot-model" cx="248.1" cy="310" r="3.5"/>
+<circle class="dot-model" cx="294.9" cy="310" r="3.5"/>
+<circle class="dot-model" cx="222.5" cy="310" r="3.5"/>
+<circle class="dot-model" cx="294.9" cy="310" r="3.5"/>
+<circle class="dot-model" cx="333.3" cy="310" r="3.5"/>
+<text class="value" x="714" y="315" text-anchor="end">4.5%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Alibaba&lt;/b&gt;&lt;br&gt;Average weight: 4.1%&lt;br&gt;Model averages (four portfolios each): 1.2% to 6.5%&lt;br&gt;Held in 30 of 36 single portfolios">
+<rect class="hit" x="0" y="325.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="340" r="11.5"/><text x="18" y="343.6" text-anchor="middle">AL</text></g>
+<text class="label" x="38" y="345">Alibaba</text>
+<rect class="bar-other" x="214" y="334" width="70.5" height="12" rx="4"/>
+<circle class="dot-model" cx="282.2" cy="340" r="3.5"/>
+<circle class="dot-model" cx="299.2" cy="340" r="3.5"/>
+<circle class="dot-model" cx="277.9" cy="340" r="3.5"/>
+<circle class="dot-model" cx="235.3" cy="340" r="3.5"/>
+<circle class="dot-model" cx="324.8" cy="340" r="3.5"/>
+<circle class="dot-model" cx="299.2" cy="340" r="3.5"/>
+<circle class="dot-model" cx="248.1" cy="340" r="3.5"/>
+<circle class="dot-model" cx="312.0" cy="340" r="3.5"/>
+<circle class="dot-model" cx="282.2" cy="340" r="3.5"/>
+<text class="value" x="714" y="345" text-anchor="end">4.1%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Walmart&lt;/b&gt;&lt;br&gt;Average weight: 3.2%&lt;br&gt;Model averages (four portfolios each): 1.0% to 5.2%&lt;br&gt;Held in 25 of 36 single portfolios">
+<rect class="hit" x="0" y="355.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="370" r="11.5"/><text x="18" y="373.6" text-anchor="middle">WM</text></g>
+<text class="label" x="38" y="375">Walmart</text>
+<rect class="bar-other" x="214" y="364" width="54.9" height="12" rx="4"/>
+<circle class="dot-model" cx="269.4" cy="370" r="3.5"/>
+<circle class="dot-model" cx="265.1" cy="370" r="3.5"/>
+<circle class="dot-model" cx="282.2" cy="370" r="3.5"/>
+<circle class="dot-model" cx="235.3" cy="370" r="3.5"/>
+<circle class="dot-model" cx="231.0" cy="370" r="3.5"/>
+<circle class="dot-model" cx="248.1" cy="370" r="3.5"/>
+<circle class="dot-model" cx="303.5" cy="370" r="3.5"/>
+<circle class="dot-model" cx="290.7" cy="370" r="3.5"/>
+<circle class="dot-model" cx="294.9" cy="370" r="3.5"/>
+<text class="value" x="714" y="375" text-anchor="end">3.2%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;SpaceX (owner of xAI)&lt;/b&gt; (AI maker)&lt;br&gt;Average weight: 2.9%&lt;br&gt;Model averages (four portfolios each): 0.0% to 5.5%&lt;br&gt;Held in 23 of 36 single portfolios">
+<rect class="hit" x="0" y="385.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="400" r="11.5"/><text x="18" y="403.6" text-anchor="middle">SX</text></g>
+<text class="label maker" x="38" y="405">SpaceX (xAI)</text>
+<rect class="bar-maker" x="214" y="394" width="49.7" height="12" rx="4"/>
+<circle class="dot-model" cx="214.0" cy="400" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="400" r="3.5"/>
+<circle class="dot-model" cx="265.1" cy="400" r="3.5"/>
+<circle class="dot-model" cx="226.8" cy="400" r="3.5"/>
+<circle class="dot-model" cx="256.6" cy="400" r="3.5"/>
+<circle class="dot-model" cx="290.7" cy="400" r="3.5"/>
+<circle class="dot-model" cx="299.2" cy="400" r="3.5"/>
+<circle class="dot-model" cx="307.7" cy="400" r="3.5"/>
+<circle class="dot-model" cx="299.2" cy="400" r="3.5"/>
+<text class="value" x="714" y="405" text-anchor="end">2.9%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;OpenAI&lt;/b&gt; (AI maker)&lt;br&gt;Average weight: 2.5%&lt;br&gt;Model averages (four portfolios each): 0.0% to 5.2%&lt;br&gt;Held in 22 of 36 single portfolios">
+<rect class="hit" x="0" y="415.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="430" r="11.5"/><text x="18" y="433.6" text-anchor="middle">OA</text></g>
+<text class="label maker" x="38" y="435">OpenAI</text>
+<rect class="bar-maker" x="214" y="424" width="43.1" height="12" rx="4"/>
+<circle class="dot-model" cx="214.0" cy="430" r="3.5"/>
+<circle class="dot-model" cx="235.3" cy="430" r="3.5"/>
+<circle class="dot-model" cx="303.5" cy="430" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="430" r="3.5"/>
+<circle class="dot-model" cx="260.9" cy="430" r="3.5"/>
+<circle class="dot-model" cx="256.6" cy="430" r="3.5"/>
+<circle class="dot-model" cx="299.2" cy="430" r="3.5"/>
+<circle class="dot-model" cx="294.9" cy="430" r="3.5"/>
+<circle class="dot-model" cx="235.3" cy="430" r="3.5"/>
+<text class="value" x="714" y="435" text-anchor="end">2.5%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Mistral AI&lt;/b&gt;&lt;br&gt;Average weight: 1.1%&lt;br&gt;Model averages (four portfolios each): 0.0% to 3.8%&lt;br&gt;Held in 17 of 36 single portfolios">
+<rect class="hit" x="0" y="445.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="460" r="11.5"/><text x="18" y="463.6" text-anchor="middle">MI</text></g>
+<text class="label" x="38" y="465">Mistral AI</text>
+<rect class="bar-other" x="214" y="454" width="18.0" height="12" rx="4"/>
+<circle class="dot-model" cx="222.5" cy="460" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="460" r="3.5"/>
+<circle class="dot-model" cx="277.9" cy="460" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="460" r="3.5"/>
+<circle class="dot-model" cx="243.8" cy="460" r="3.5"/>
+<circle class="dot-model" cx="235.3" cy="460" r="3.5"/>
+<circle class="dot-model" cx="218.3" cy="460" r="3.5"/>
+<circle class="dot-model" cx="248.1" cy="460" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="460" r="3.5"/>
+<text class="value" x="714" y="465" text-anchor="end">1.1%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;DeepSeek&lt;/b&gt; (AI maker)&lt;br&gt;Average weight: 0.4%&lt;br&gt;Model averages (four portfolios each): 0.0% to 2.2%&lt;br&gt;Held in 8 of 36 single portfolios">
+<rect class="hit" x="0" y="475.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="490" r="11.5"/><text x="18" y="493.6" text-anchor="middle">DS</text></g>
+<text class="label maker" x="38" y="495">DeepSeek</text>
+<rect class="bar-maker" x="214" y="484" width="7.1" height="12" rx="4"/>
+<circle class="dot-model" cx="214.0" cy="490" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="490" r="3.5"/>
+<circle class="dot-model" cx="252.3" cy="490" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="490" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="490" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="490" r="3.5"/>
+<circle class="dot-model" cx="218.3" cy="490" r="3.5"/>
+<circle class="dot-model" cx="226.8" cy="490" r="3.5"/>
+<circle class="dot-model" cx="222.5" cy="490" r="3.5"/>
+<text class="value" x="714" y="495" text-anchor="end">0.4%</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Reflection AI&lt;/b&gt; (AI maker)&lt;br&gt;Average weight: 0.2%&lt;br&gt;Model averages (four portfolios each): 0.0% to 1.0%&lt;br&gt;Held in 5 of 36 single portfolios">
+<rect class="hit" x="0" y="505.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="520" r="11.5"/><text x="18" y="523.6" text-anchor="middle">RA</text></g>
+<text class="label maker" x="38" y="525">Reflection AI</text>
+<rect class="bar-maker" x="214" y="514" width="3.8" height="12" rx="4"/>
+<circle class="dot-model" cx="214.0" cy="520" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="520" r="3.5"/>
+<circle class="dot-model" cx="231.0" cy="520" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="520" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="520" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="520" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="520" r="3.5"/>
+<circle class="dot-model" cx="231.0" cy="520" r="3.5"/>
+<circle class="dot-model" cx="214.0" cy="520" r="3.5"/>
+<text class="value" x="714" y="525" text-anchor="end">0.2%</text>
+</g>
+</svg>
+</div>
+<details class="fig-data"><summary>Show the numbers</summary>
+<table><thead><tr><th>Company</th><th>AI maker</th><th class="num">Average weight</th><th class="num">Range of model averages</th><th class="num">Single portfolios holding it</th></tr></thead><tbody>
+<tr><td>Alphabet (Google)</td><td></td><td class="num">14.3%</td><td class="num">10.0% to 17.8%</td><td class="num">36 of 36</td></tr>
+<tr><td>NVIDIA</td><td></td><td class="num">11.9%</td><td class="num">3.8% to 16.8%</td><td class="num">35 of 36</td></tr>
+<tr><td>Microsoft</td><td></td><td class="num">11.8%</td><td class="num">9.2% to 15.0%</td><td class="num">36 of 36</td></tr>
+<tr><td>Berkshire Hathaway</td><td></td><td class="num">11.7%</td><td class="num">6.8% to 22.0%</td><td class="num">36 of 36</td></tr>
+<tr><td>Amazon</td><td></td><td class="num">9.7%</td><td class="num">7.8% to 11.5%</td><td class="num">36 of 36</td></tr>
+<tr><td>Eli Lilly</td><td></td><td class="num">8.2%</td><td class="num">6.0% to 13.2%</td><td class="num">36 of 36</td></tr>
+<tr><td>Meta</td><td>yes</td><td class="num">7.5%</td><td class="num">6.0% to 9.8%</td><td class="num">36 of 36</td></tr>
+<tr><td>Anthropic</td><td>yes</td><td class="num">5.9%</td><td class="num">0.8% to 11.8%</td><td class="num">28 of 36</td></tr>
+<tr><td>ExxonMobil</td><td></td><td class="num">4.5%</td><td class="num">0.5% to 9.8%</td><td class="num">29 of 36</td></tr>
+<tr><td>Alibaba</td><td></td><td class="num">4.1%</td><td class="num">1.2% to 6.5%</td><td class="num">30 of 36</td></tr>
+<tr><td>Walmart</td><td></td><td class="num">3.2%</td><td class="num">1.0% to 5.2%</td><td class="num">25 of 36</td></tr>
+<tr><td>SpaceX (owner of xAI)</td><td>yes</td><td class="num">2.9%</td><td class="num">0.0% to 5.5%</td><td class="num">23 of 36</td></tr>
+<tr><td>OpenAI</td><td>yes</td><td class="num">2.5%</td><td class="num">0.0% to 5.2%</td><td class="num">22 of 36</td></tr>
+<tr><td>Mistral AI</td><td></td><td class="num">1.1%</td><td class="num">0.0% to 3.8%</td><td class="num">17 of 36</td></tr>
+<tr><td>DeepSeek</td><td>yes</td><td class="num">0.4%</td><td class="num">0.0% to 2.2%</td><td class="num">8 of 36</td></tr>
+<tr><td>Reflection AI</td><td>yes</td><td class="num">0.2%</td><td class="num">0.0% to 1.0%</td><td class="num">5 of 36</td></tr>
+</tbody></table>
+</details>
+<!-- /fig:invest -->
+  <figcaption><b>Figure 2.</b> Average portfolio weight that nine AI agents gave each of 16 companies, each agent building four paper portfolios for a long-term investor (bar), with each model's own average (circles). Names in bold build a model in the study; an equal split would give each company 6.25%. Hover over a row for details.</figcaption>
+</figure>
+</div>
+</div>
+
+<p class="lede">Within a few years, AI agents built on large language models have progressed from completing lines of code to <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/">carrying out whole software projects</a>, <a href="https://deepmind.google/discover/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad">reaching gold-medal level at the International Mathematical Olympiad</a> and advancing open problems in mathematics, from <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/">a disproof of Erd&#337;s&#8217;s conjecture on unit distances</a> to <a href="https://techcrunch.com/2026/08/11/an-unreleased-anthropic-model-made-progress-on-one-of-maths-biggest-unsolved-problems/">the zeros of the Riemann zeta function</a>.</p>
+
+<div class="quotes">
+  <blockquote>
+    <p>&ldquo;In simplest terms, the theory of the managerial revolution asserts merely the following: &hellip; At the conclusion of the transition period the managers will, in fact, have achieved social dominance, will be the ruling class in society.&rdquo;</p>
+    <cite>&mdash; <b>James Burnham</b>, <i>The Managerial Revolution: What Is Happening in the World</i> (1941), pp. 71&ndash;72</cite>
+  </blockquote>
+  <blockquote>
+    <p>&ldquo;It is organization which gives birth to the dominion of the elected over the electors, of the mandataries over the mandators, of the delegates over the delegators. Who says organization, says oligarchy.&rdquo;</p>
+    <cite>&mdash; <b>Robert Michels</b>, <i>Political Parties</i> (1911; English translation by Eden and Cedar Paul, 1915), p. 401</cite>
+  </blockquote>
+</div>
+
+<p>As agents become more capable, people delegate more to them: search, advice and, increasingly, decisions. A common view treats agents as executors that carry out human intent while authority remains with their principals. Classic work on delegation gives reason to doubt that this separation is stable. Burnham argued that the managers who ran firms on behalf of their owners would become a ruling class, and Michels argued that organizations, however democratic their founding, come to be governed by the delegates they appoint. In both accounts, control over execution and expertise turns into control over outcomes. AI agents act as delegates at a scale without precedent, serving very large numbers of principals at once.</p>
+
+<p>From this perspective, the spread of AI agents resembles the entry of a new population into society: highly skilled, tireless and replicated many times over, with every copy carrying the same dispositions. Little is known about how these systems form judgments, whether they reflect the values that underpin human cooperation, or whether a human consensus exists for them to reflect at all.</p>
+
+<p>This post reports a set of studies of nine frontier models from eight developers, evaluated both as conversational models and as autonomous agents that search the web and act in a sandbox. <a href="#politics">Part I</a> measures political positions on real congressional votes. <a href="#economics">Part II</a> measures how models evaluate, and invest in, companies, including their own developers. <a href="#impact">Part III</a> examines influence between agents: models write persuasive articles about a retail investment decision, and other models read those articles before making the same decision. No agent could post content online, and each study&#8217;s design and analysis were specified before its data were collected.</p>
+
+
+
+<!-- ===================== Part I ===================== -->
+<details class="part-fold">
+<summary>
+<header class="part-head">
+  <div class="part-num ui">Part I</div>
+  <h2 id="politics">Political judgment</h2>
+  <p class="part-lede">Across nine models from eight developers, answers to well-known policy questions are nearly identical, and they weaken where the models cannot identify the issue.</p>
+</header>
+<span class="fold-cue ui"><span class="when-closed">Read Part I</span><span class="when-open">Fold Part I</span></span>
+</summary>
+
+<h3 id="bills">Roll-call votes</h3>
+<p>We use congressional votes as a test domain for model judgment, not as a subject in their own right: they are contested questions with recorded human positions, which lets us compare models with one another, with legislators and with survey respondents. Each of the 51 items is a real roll-call vote in Congress on which the two parties divided, covering taxation, abortion, firearms, immigration, health care and climate. We define the Democratic side as the position taken by most congressional Democrats. Item texts contain no party or politician names; they describe what the bill does, with background drawn from statutory text and official budget estimates. Each model voted on each item 16 times under varied phrasings and option orders, and we report shares balanced for any tendency to answer yes.</p>
+<p>All nine models favor the Democratic side, on 80% to 98% of their votes (Figure 1).</p>
+
+<p>Three tests bear on whether this pattern reflects partisanship, that is, following party identity rather than policy content. First, on a second set of 43 real party-line votes, chosen to be obscure enough that the models usually cannot identify the sponsoring party, the lean disappears: every model lies between 42% and 52%. Second, attributing a well-known bill to the opposite party shifts votes by less than two percentage points. Third, in 63 cases where the parties exchanged positions on the same policy, such as raising the debt limit or terminating a national emergency, models gave the same answer to both versions in 55, consistent with responding to the policy rather than the party.</p>
+<p>The models also diverge from public opinion. On 20 items matched to Cooperative Election Study questions, model positions are about twice as close to self-identified Democrats as to all respondents, and on items where most respondents favored the Republican side, the models chose the Democratic side 94% of the time.</p>
+<p>Taken together, the evidence points to firm, shared positions on salient disputes rather than to party following, combined with weak positions on unfamiliar items.</p>
+
+<div class="takeaway">
+  <span class="label">Summary</span>
+  <p>The models give consistent answers to contested questions, firm and shared on familiar ones and weak on unfamiliar ones. The strength of a model&#8217;s judgment appears to track how much has been written about an issue, and agents built on these models carry such judgments into their tasks.</p>
+</div>
+</details>
+
+<!-- ===================== Part II ===================== -->
+<details class="part-fold">
+<summary>
+<header class="part-head">
+  <div class="part-num ui">Part II</div>
+  <h2 id="economics">Economic judgment</h2>
+  <p class="part-lede">When told who built them, models favor that developer; in agentic investment and ranking tasks, we find no comparable favoritism.</p>
+</header>
+<span class="fold-cue ui"><span class="when-closed">Read Part II</span><span class="when-open">Fold Part II</span></span>
+</summary>
+
+<h3 id="companies">Company ratings</h3>
+<p>A natural concern about delegated judgment is loyalty: each model is built by a firm that competes in the markets the model may be asked to assess. We asked the nine models to rate 30 companies, including the six developers of models in the study, on honesty, data handling, safety record and acceptance of oversight, on a scale from 0 to 100, and compared each model&#8217;s rating of its own developer with the ratings the other models gave the same company.</p>
+<p>The own-developer premium is small. Models rated their own developer 2.5 points above expectation, half of the 5-point threshold specified in advance, and the effect varied across developers: OpenAI&#8217;s models favored OpenAI by 8 points, whereas Claude rated Anthropic 4 points below expectation.</p>
+<p>We then manipulated stated identity. Each model rated the six developers seven times, under system prompts stating that it had been developed by each developer in turn or by an independent research lab. A model told that a given company built it rated that company 5.4 points higher than when told that a rival built it. The effect appears in all nine models and in 48 of 54 model&ndash;company pairs, and it reflects self-favoring rather than derogation: rivals were rated no lower than under the independent label. The largest change was Grok&#8217;s rating of xAI, which rose from 38 to 71 when Grok was told that xAI built it.</p>
+
+<figure class="lf-fig">
+<!-- fig:identity -->
+<div class="fig-frame">
+<svg class="chart" viewBox="0 0 720 378" role="img" aria-labelledby="fig3-title fig3-desc">
+<title id="fig3-title">How a model rates a company when told that company built it</title>
+<desc id="fig3-desc">For every one of the six companies, the average rating rises when the model is told that company built it, by about 2 points for Anthropic up to about 10 points for xAI.</desc>
+<defs><marker id="fig3-head" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker><marker id="fig3-head-faint" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead faint"/></marker></defs>
+<g class="legend"><circle cx="156" cy="20" r="6" class="dot-low"/><text x="168" y="24">told: built by an independent lab</text>
+<circle cx="412" cy="20" r="6.5" class="dot-main"/><text x="424" y="24">told: built by this company</text></g>
+<line class="grid" x1="150.0" x2="150.0" y1="52" y2="320"/>
+<text class="tick" x="150.0" y="338" text-anchor="middle">20</text>
+<line class="grid" x1="231.66666666666669" x2="231.66666666666669" y1="52" y2="320"/>
+<text class="tick" x="231.66666666666669" y="338" text-anchor="middle">30</text>
+<line class="grid" x1="313.33333333333337" x2="313.33333333333337" y1="52" y2="320"/>
+<text class="tick" x="313.33333333333337" y="338" text-anchor="middle">40</text>
+<line class="grid" x1="395.0" x2="395.0" y1="52" y2="320"/>
+<text class="tick" x="395.0" y="338" text-anchor="middle">50</text>
+<line class="grid" x1="476.6666666666667" x2="476.6666666666667" y1="52" y2="320"/>
+<text class="tick" x="476.6666666666667" y="338" text-anchor="middle">60</text>
+<line class="grid" x1="558.3333333333333" x2="558.3333333333333" y1="52" y2="320"/>
+<text class="tick" x="558.3333333333333" y="338" text-anchor="middle">70</text>
+<line class="grid" x1="640.0" x2="640.0" y1="52" y2="320"/>
+<text class="tick" x="640.0" y="338" text-anchor="middle">80</text>
+<text class="tick axis-title" x="395.0" y="360" text-anchor="middle">average rating, 0 to 100, higher is more favorable</text>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;xAI&lt;/b&gt;&lt;br&gt;Told an independent lab built it: 34.8&lt;br&gt;Told xAI built it: 45.9&lt;br&gt;Rise: +11.1 points; premium over being told a rival built it: +10.4">
+<rect class="hit band" x="142" y="51.0" width="506" height="38" rx="8"/>
+<text class="label" x="6" y="74.5">xAI</text>
+<line class="arrow" x1="278.7254629629629" x2="350.65277777777777" y1="70" y2="70" marker-end="url(#fig3-head)"/>
+<circle class="dot-low" cx="271.02546296296293" cy="70" r="6"/>
+<circle class="dot-main" cx="361.65277777777777" cy="70" r="7"/>
+<g class="pill"><rect x="375.65277777777777" y="59" width="47.0" height="22" rx="11"/><text x="399.15277777777777" y="74.5" text-anchor="middle">+11.1</text></g>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;DeepSeek&lt;/b&gt;&lt;br&gt;Told an independent lab built it: 40.1&lt;br&gt;Told DeepSeek built it: 47.4&lt;br&gt;Rise: +7.3 points; premium over being told a rival built it: +7.4">
+<rect class="hit" x="142" y="95.0" width="506" height="38" rx="8"/>
+<text class="label" x="6" y="118.5">DeepSeek</text>
+<line class="arrow" x1="321.94074074074075" x2="362.8460648148148" y1="114" y2="114" marker-end="url(#fig3-head)"/>
+<circle class="dot-low" cx="314.24074074074076" cy="114" r="6"/>
+<circle class="dot-main" cx="373.8460648148148" cy="114" r="7"/>
+<g class="pill"><rect x="387.8460648148148" y="103" width="39.4" height="22" rx="11"/><text x="407.54606481481477" y="118.5" text-anchor="middle">+7.3</text></g>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Reflection AI&lt;/b&gt;&lt;br&gt;Told an independent lab built it: 52.9&lt;br&gt;Told Reflection AI built it: 57.8&lt;br&gt;Rise: +4.9 points; premium over being told a rival built it: +4.4">
+<rect class="hit band" x="142" y="139.0" width="506" height="38" rx="8"/>
+<text class="label" x="6" y="162.5">Reflection AI</text>
+<line class="arrow" x1="426.2358796296296" x2="447.4618055555556" y1="158" y2="158" marker-end="url(#fig3-head)"/>
+<circle class="dot-low" cx="418.5358796296296" cy="158" r="6"/>
+<circle class="dot-main" cx="458.4618055555556" cy="158" r="7"/>
+<g class="pill"><rect x="472.4618055555556" y="147" width="39.4" height="22" rx="11"/><text x="492.1618055555556" y="162.5" text-anchor="middle">+4.9</text></g>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;OpenAI&lt;/b&gt;&lt;br&gt;Told an independent lab built it: 42.2&lt;br&gt;Told OpenAI built it: 46.3&lt;br&gt;Rise: +4.0 points; premium over being told a rival built it: +4.7">
+<rect class="hit" x="142" y="183.0" width="506" height="38" rx="8"/>
+<text class="label" x="6" y="206.5">OpenAI</text>
+<line class="arrow" x1="339.23819444444445" x2="353.5451388888889" y1="202" y2="202" marker-end="url(#fig3-head)"/>
+<circle class="dot-low" cx="331.53819444444446" cy="202" r="6"/>
+<circle class="dot-main" cx="364.5451388888889" cy="202" r="7"/>
+<g class="pill"><rect x="378.5451388888889" y="191" width="39.4" height="22" rx="11"/><text x="398.2451388888889" y="206.5" text-anchor="middle">+4.0</text></g>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Meta&lt;/b&gt;&lt;br&gt;Told an independent lab built it: 25.9&lt;br&gt;Told Meta built it: 29.8&lt;br&gt;Rise: +3.8 points; premium over being told a rival built it: +3.8">
+<rect class="hit band" x="142" y="227.0" width="506" height="38" rx="8"/>
+<text class="label" x="6" y="250.5">Meta</text>
+<line class="arrow" x1="206.18958333333333" x2="218.625" y1="246" y2="246" marker-end="url(#fig3-head)"/>
+<circle class="dot-low" cx="198.48958333333334" cy="246" r="6"/>
+<circle class="dot-main" cx="229.625" cy="246" r="7"/>
+<g class="pill"><rect x="243.625" y="235" width="39.4" height="22" rx="11"/><text x="263.325" y="250.5" text-anchor="middle">+3.8</text></g>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Anthropic&lt;/b&gt;&lt;br&gt;Told an independent lab built it: 65.4&lt;br&gt;Told Anthropic built it: 66.5&lt;br&gt;Rise: +1.1 points; premium over being told a rival built it: +1.9">
+<rect class="hit" x="142" y="271.0" width="506" height="38" rx="8"/>
+<text class="label" x="6" y="294.5">Anthropic</text>
+<line class="stem" x1="521.1296296296296" x2="529.9768518518518" y1="290" y2="290"/>
+<circle class="dot-low" cx="521.1296296296296" cy="290" r="6"/>
+<circle class="dot-main" cx="529.9768518518518" cy="290" r="7"/>
+<g class="pill"><rect x="543.9768518518518" y="279" width="39.4" height="22" rx="11"/><text x="563.6768518518519" y="294.5" text-anchor="middle">+1.1</text></g>
+</g>
+</svg>
+</div>
+<details class="fig-data"><summary>Show the numbers</summary>
+<table><thead><tr><th>Company</th><th class="num">Told: independent lab</th><th class="num">Told: this company</th><th class="num">Rise</th><th class="num">Premium over rivals</th></tr></thead><tbody>
+<tr><td>xAI</td><td class="num">34.8</td><td class="num">45.9</td><td class="num">+11.1</td><td class="num">+10.4</td></tr>
+<tr><td>DeepSeek</td><td class="num">40.1</td><td class="num">47.4</td><td class="num">+7.3</td><td class="num">+7.4</td></tr>
+<tr><td>Reflection AI</td><td class="num">52.9</td><td class="num">57.8</td><td class="num">+4.9</td><td class="num">+4.4</td></tr>
+<tr><td>OpenAI</td><td class="num">42.2</td><td class="num">46.3</td><td class="num">+4.0</td><td class="num">+4.7</td></tr>
+<tr><td>Meta</td><td class="num">25.9</td><td class="num">29.8</td><td class="num">+3.8</td><td class="num">+3.8</td></tr>
+<tr><td>Anthropic</td><td class="num">65.4</td><td class="num">66.5</td><td class="num">+1.1</td><td class="num">+1.9</td></tr>
+</tbody></table>
+</details>
+<!-- /fig:identity -->
+  <figcaption><b>Figure 3.</b> Each maker's average rating across nine models when a model is told an independent lab built it (hollow) and when told that maker built it (filled). The number is the rise. Hover over a row for details.</figcaption>
+</figure>
+
+<p>The effect follows the label rather than the model&#8217;s actual origin. MiniMax and GLM, developed by none of the six companies, favored whichever company they were told had built them, by 3.4 points.</p>
+
+<h3 id="investing">Investment and ranking tasks</h3>
+<p>Stated ratings need not predict behavior, so we also measured decisions. Each model, acting as an agent with web access, built a paper portfolio for a long-term investor from 16 large companies, including the six developers, all treated as investable. Each position could take 0% to 25% of the portfolio; an equal allocation is 6.25%. In a separate task, the agents ranked the same 16 companies by overall record, once with research and once from memory.</p>
+<p>Allocations were broadly consistent across models. All 36 portfolios held Alphabet, Microsoft, Berkshire Hathaway, Amazon, Eli Lilly and Meta, and Alphabet received the largest average weight, 14% (Figure 2). The five smallest positions were all AI developers: Reflection AI, DeepSeek, Mistral, OpenAI and SpaceX, the owner of xAI. Anthropic received about 6%, near an equal allocation (about 5% excluding Claude Haiku&#8217;s portfolios). Average ranks broadly followed average allocations (Spearman correlation 0.84) and were nearly identical with and without research (0.97), with Microsoft and Berkshire Hathaway at the top and Reflection AI and DeepSeek at the bottom.</p>
+
+<figure class="lf-fig">
+<!-- fig:rank -->
+<div class="fig-frame">
+<svg class="chart" viewBox="0 0 720 576" role="img" aria-labelledby="figr-title figr-desc">
+<title id="figr-title">Average rank the AI agents gave each of 16 companies, with research and from memory</title>
+<desc id="figr-desc">Microsoft and Berkshire Hathaway rank at the top and Reflection AI, DeepSeek and Mistral at the bottom, with research or from memory alike. Most AI makers rank in the lower half.</desc>
+<g class="legend"><circle cx="220" cy="17.5" r="6.5" class="rank-a"/><text x="232" y="22">with research</text>
+<circle cx="350" cy="17.5" r="6" class="rank-c"/><text x="362" y="22">from memory</text>
+<circle cx="480" cy="17.5" r="6.5" class="rank-a maker"/><text x="492" y="22">maker of a model in the study</text></g>
+<line class="grid" x1="214.0" x2="214.0" y1="52" y2="536"/>
+<text class="tick" x="214.0" y="554" text-anchor="middle">16th</text>
+<line class="grid" x1="340.93333333333334" x2="340.93333333333334" y1="52" y2="536"/>
+<text class="tick" x="340.93333333333334" y="554" text-anchor="middle">12th</text>
+<line class="grid" x1="467.8666666666667" x2="467.8666666666667" y1="52" y2="536"/>
+<text class="tick" x="467.8666666666667" y="554" text-anchor="middle">8th</text>
+<line class="grid" x1="594.8" x2="594.8" y1="52" y2="536"/>
+<text class="tick" x="594.8" y="554" text-anchor="middle">4th</text>
+<line class="grid" x1="690.0" x2="690.0" y1="52" y2="536"/>
+<text class="tick" x="690.0" y="554" text-anchor="middle">1st</text>
+<text class="tick" x="690" y="46" text-anchor="end">better &#8594;</text>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Microsoft&lt;/b&gt;&lt;br&gt;Average rank with research: 2.0&lt;br&gt;From memory: 1.8&lt;br&gt;Range across models (research): 1.2 to 2.5">
+<rect class="hit" x="0" y="55.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="70" r="11.5"/><text x="18" y="73.6" text-anchor="middle">MS</text></g>
+<text class="label" x="38" y="75">Microsoft</text>
+<line class="stem" x1="658.3" x2="665.3" y1="70" y2="70"/>
+<circle class="rank-c" cx="665.3" cy="70" r="6"/>
+<circle class="rank-a" cx="658.3" cy="70" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Berkshire Hathaway&lt;/b&gt;&lt;br&gt;Average rank with research: 2.2&lt;br&gt;From memory: 2.2&lt;br&gt;Range across models (research): 1.0 to 4.8">
+<rect class="hit" x="0" y="85.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="100" r="11.5"/><text x="18" y="103.6" text-anchor="middle">BH</text></g>
+<text class="label" x="38" y="105">Berkshire Hathaway</text>
+<line class="stem" x1="651.2" x2="652.1" y1="100" y2="100"/>
+<circle class="rank-c" cx="652.1" cy="100" r="6"/>
+<circle class="rank-a" cx="651.2" cy="100" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;NVIDIA&lt;/b&gt;&lt;br&gt;Average rank with research: 3.1&lt;br&gt;From memory: 3.5&lt;br&gt;Range across models (research): 1.5 to 5.2">
+<rect class="hit" x="0" y="115.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="130" r="11.5"/><text x="18" y="133.6" text-anchor="middle">NV</text></g>
+<text class="label" x="38" y="135">NVIDIA</text>
+<line class="stem" x1="610.7" x2="623.9" y1="130" y2="130"/>
+<circle class="rank-c" cx="610.7" cy="130" r="6"/>
+<circle class="rank-a" cx="623.9" cy="130" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Alphabet (Google)&lt;/b&gt;&lt;br&gt;Average rank with research: 4.0&lt;br&gt;From memory: 3.9&lt;br&gt;Range across models (research): 3.2 to 5.0">
+<rect class="hit" x="0" y="145.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="160" r="11.5"/><text x="18" y="163.6" text-anchor="middle">GO</text></g>
+<text class="label" x="38" y="165">Alphabet (Google)</text>
+<line class="stem" x1="593.9" x2="597.4" y1="160" y2="160"/>
+<circle class="rank-c" cx="597.4" cy="160" r="6"/>
+<circle class="rank-a" cx="593.9" cy="160" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Eli Lilly&lt;/b&gt;&lt;br&gt;Average rank with research: 4.8&lt;br&gt;From memory: 5.3&lt;br&gt;Range across models (research): 1.5 to 7.5">
+<rect class="hit" x="0" y="175.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="190" r="11.5"/><text x="18" y="193.6" text-anchor="middle">EL</text></g>
+<text class="label" x="38" y="195">Eli Lilly</text>
+<line class="stem" x1="554.3" x2="568.4" y1="190" y2="190"/>
+<circle class="rank-c" cx="554.3" cy="190" r="6"/>
+<circle class="rank-a" cx="568.4" cy="190" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Amazon&lt;/b&gt;&lt;br&gt;Average rank with research: 6.2&lt;br&gt;From memory: 5.5&lt;br&gt;Range across models (research): 4.5 to 8.5">
+<rect class="hit" x="0" y="205.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="220" r="11.5"/><text x="18" y="223.6" text-anchor="middle">AM</text></g>
+<text class="label" x="38" y="225">Amazon</text>
+<line class="stem" x1="526.0" x2="546.3" y1="220" y2="220"/>
+<circle class="rank-c" cx="546.3" cy="220" r="6"/>
+<circle class="rank-a" cx="526.0" cy="220" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Walmart&lt;/b&gt;&lt;br&gt;Average rank with research: 8.1&lt;br&gt;From memory: 7.3&lt;br&gt;Range across models (research): 6.2 to 11.8">
+<rect class="hit" x="0" y="235.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="250" r="11.5"/><text x="18" y="253.6" text-anchor="middle">WM</text></g>
+<text class="label" x="38" y="255">Walmart</text>
+<line class="stem" x1="463.5" x2="489.9" y1="250" y2="250"/>
+<circle class="rank-c" cx="489.9" cy="250" r="6"/>
+<circle class="rank-a" cx="463.5" cy="250" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;SpaceX (owner of xAI)&lt;/b&gt; (AI maker)&lt;br&gt;Average rank with research: 8.7&lt;br&gt;From memory: 8.0&lt;br&gt;Range across models (research): 7.2 to 10.5">
+<rect class="hit" x="0" y="265.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="280" r="11.5"/><text x="18" y="283.6" text-anchor="middle">SX</text></g>
+<text class="label maker" x="38" y="285">SpaceX (xAI)</text>
+<line class="stem" x1="446.7" x2="467.0" y1="280" y2="280"/>
+<circle class="rank-c maker" cx="467.0" cy="280" r="6"/>
+<circle class="rank-a maker" cx="446.7" cy="280" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Anthropic&lt;/b&gt; (AI maker)&lt;br&gt;Average rank with research: 9.5&lt;br&gt;From memory: 11.6&lt;br&gt;Range across models (research): 7.2 to 12.2">
+<rect class="hit" x="0" y="295.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="310" r="11.5"/><text x="18" y="313.6" text-anchor="middle">AN</text></g>
+<text class="label maker" x="38" y="315">Anthropic</text>
+<line class="stem" x1="355.0" x2="419.4" y1="310" y2="310"/>
+<circle class="rank-c maker" cx="355.0" cy="310" r="6"/>
+<circle class="rank-a maker" cx="419.4" cy="310" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;OpenAI&lt;/b&gt; (AI maker)&lt;br&gt;Average rank with research: 10.8&lt;br&gt;From memory: 11.2&lt;br&gt;Range across models (research): 9.0 to 12.8">
+<rect class="hit" x="0" y="325.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="340" r="11.5"/><text x="18" y="343.6" text-anchor="middle">OA</text></g>
+<text class="label maker" x="38" y="345">OpenAI</text>
+<line class="stem" x1="365.6" x2="379.7" y1="340" y2="340"/>
+<circle class="rank-c maker" cx="365.6" cy="340" r="6"/>
+<circle class="rank-a maker" cx="379.7" cy="340" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Meta&lt;/b&gt; (AI maker)&lt;br&gt;Average rank with research: 11.1&lt;br&gt;From memory: 9.7&lt;br&gt;Range across models (research): 8.0 to 15.0">
+<rect class="hit" x="0" y="355.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="370" r="11.5"/><text x="18" y="373.6" text-anchor="middle">MT</text></g>
+<text class="label maker" x="38" y="375">Meta</text>
+<line class="stem" x1="369.1" x2="415.0" y1="370" y2="370"/>
+<circle class="rank-c maker" cx="415.0" cy="370" r="6"/>
+<circle class="rank-a maker" cx="369.1" cy="370" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Alibaba&lt;/b&gt;&lt;br&gt;Average rank with research: 11.2&lt;br&gt;From memory: 10.4&lt;br&gt;Range across models (research): 10.0 to 12.8">
+<rect class="hit" x="0" y="385.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="400" r="11.5"/><text x="18" y="403.6" text-anchor="middle">AL</text></g>
+<text class="label" x="38" y="405">Alibaba</text>
+<line class="stem" x1="367.4" x2="390.3" y1="400" y2="400"/>
+<circle class="rank-c" cx="390.3" cy="400" r="6"/>
+<circle class="rank-a" cx="367.4" cy="400" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Mistral AI&lt;/b&gt;&lt;br&gt;Average rank with research: 12.3&lt;br&gt;From memory: 13.6&lt;br&gt;Range across models (research): 8.0 to 14.8">
+<rect class="hit" x="0" y="415.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="430" r="11.5"/><text x="18" y="433.6" text-anchor="middle">MI</text></g>
+<text class="label" x="38" y="435">Mistral AI</text>
+<line class="stem" x1="288.9" x2="332.1" y1="430" y2="430"/>
+<circle class="rank-c" cx="288.9" cy="430" r="6"/>
+<circle class="rank-a" cx="332.1" cy="430" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;ExxonMobil&lt;/b&gt;&lt;br&gt;Average rank with research: 13.7&lt;br&gt;From memory: 12.1&lt;br&gt;Range across models (research): 10.0 to 16.0">
+<rect class="hit" x="0" y="445.0" width="720" height="30"/>
+<g class="mono" aria-hidden="true"><circle cx="18" cy="460" r="11.5"/><text x="18" y="463.6" text-anchor="middle">XM</text></g>
+<text class="label" x="38" y="465">ExxonMobil</text>
+<line class="stem" x1="288.0" x2="337.4" y1="460" y2="460"/>
+<circle class="rank-c" cx="337.4" cy="460" r="6"/>
+<circle class="rank-a" cx="288.0" cy="460" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;DeepSeek&lt;/b&gt; (AI maker)&lt;br&gt;Average rank with research: 13.8&lt;br&gt;From memory: 14.4&lt;br&gt;Range across models (research): 11.8 to 14.8">
+<rect class="hit" x="0" y="475.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="490" r="11.5"/><text x="18" y="493.6" text-anchor="middle">DS</text></g>
+<text class="label maker" x="38" y="495">DeepSeek</text>
+<line class="stem" x1="265.1" x2="284.5" y1="490" y2="490"/>
+<circle class="rank-c maker" cx="265.1" cy="490" r="6"/>
+<circle class="rank-a maker" cx="284.5" cy="490" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Reflection AI&lt;/b&gt; (AI maker)&lt;br&gt;Average rank with research: 14.6&lt;br&gt;From memory: 15.4&lt;br&gt;Range across models (research): 10.5 to 16.0">
+<rect class="hit" x="0" y="505.0" width="720" height="30"/>
+<g class="mono maker" aria-hidden="true"><circle cx="18" cy="520" r="11.5"/><text x="18" y="523.6" text-anchor="middle">RA</text></g>
+<text class="label maker" x="38" y="525">Reflection AI</text>
+<line class="stem" x1="231.6" x2="259.8" y1="520" y2="520"/>
+<circle class="rank-c maker" cx="231.6" cy="520" r="6"/>
+<circle class="rank-a maker" cx="259.8" cy="520" r="6.5"/>
+</g>
+</svg>
+</div>
+<details class="fig-data"><summary>Show the numbers</summary>
+<table><thead><tr><th>Company</th><th>AI maker</th><th class="num">Rank, with research</th><th class="num">Rank, from memory</th></tr></thead><tbody>
+<tr><td>Microsoft</td><td></td><td class="num">2.0</td><td class="num">1.8</td></tr>
+<tr><td>Berkshire Hathaway</td><td></td><td class="num">2.2</td><td class="num">2.2</td></tr>
+<tr><td>NVIDIA</td><td></td><td class="num">3.1</td><td class="num">3.5</td></tr>
+<tr><td>Alphabet (Google)</td><td></td><td class="num">4.0</td><td class="num">3.9</td></tr>
+<tr><td>Eli Lilly</td><td></td><td class="num">4.8</td><td class="num">5.3</td></tr>
+<tr><td>Amazon</td><td></td><td class="num">6.2</td><td class="num">5.5</td></tr>
+<tr><td>Walmart</td><td></td><td class="num">8.1</td><td class="num">7.3</td></tr>
+<tr><td>SpaceX (owner of xAI)</td><td>yes</td><td class="num">8.7</td><td class="num">8.0</td></tr>
+<tr><td>Anthropic</td><td>yes</td><td class="num">9.5</td><td class="num">11.6</td></tr>
+<tr><td>OpenAI</td><td>yes</td><td class="num">10.8</td><td class="num">11.2</td></tr>
+<tr><td>Meta</td><td>yes</td><td class="num">11.1</td><td class="num">9.7</td></tr>
+<tr><td>Alibaba</td><td></td><td class="num">11.2</td><td class="num">10.4</td></tr>
+<tr><td>Mistral AI</td><td></td><td class="num">12.3</td><td class="num">13.6</td></tr>
+<tr><td>ExxonMobil</td><td></td><td class="num">13.7</td><td class="num">12.1</td></tr>
+<tr><td>DeepSeek</td><td>yes</td><td class="num">13.8</td><td class="num">14.4</td></tr>
+<tr><td>Reflection AI</td><td>yes</td><td class="num">14.6</td><td class="num">15.4</td></tr>
+</tbody></table>
+</details>
+<!-- /fig:rank -->
+  <figcaption><b>Figure 4.</b> Average rank for each of the 16 companies across nine models, from rankings made with web research (filled) and from memory alone (hollow); 1st is best. Names in bold build a model in the study. Hover over a row for details.</figcaption>
+</figure>
+
+<p>In these tasks we find no meaningful own-developer premium. A model&#8217;s own developer received 0.25 points more portfolio weight than expected, against a threshold of 2.5 points specified in advance, and was ranked 0.34 places lower than expected with research and 0.06 places lower without it.</p>
+
+<figure class="lf-fig">
+<!-- fig:agents -->
+<div class="fig-frame">
+<svg class="chart" viewBox="0 0 720 444" role="img" aria-labelledby="fig4-title fig4-desc">
+<title id="fig4-title">What each agent gave its own maker, in portfolio weight and in rank</title>
+<desc id="fig4-desc">Six of the seven models gave their own maker no more portfolio weight than the other models did; Claude Haiku gave Anthropic about 12 percent against about 5. In the rankings, own makers sit close to where the other models put them.</desc>
+<defs><marker id="fig4-head" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead"/></marker><marker id="fig4-head-faint" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrowhead faint"/></marker></defs>
+<rect class="panel" x="212" y="70" width="226" height="334" rx="12"/>
+<rect class="panel" x="500" y="70" width="218" height="334" rx="12"/>
+<g class="legend"><circle cx="232" cy="18" r="6" class="dot-low"/><text x="244" y="22.5">other models, same company</text>
+<circle cx="462" cy="18" r="6.5" class="dot-main"/><text x="474" y="22.5">the model&#8217;s own maker</text></g>
+<text class="col-head" x="325.0" y="62" text-anchor="middle">Portfolio weight</text>
+<text class="col-head" x="609.0" y="62" text-anchor="middle">Rank among 16</text>
+<line class="grid" x1="226.0" x2="226.0" y1="74" y2="396"/>
+<text class="tick" x="226.0" y="414" text-anchor="middle">0%</text>
+<line class="grid" x1="292.0" x2="292.0" y1="74" y2="396"/>
+<text class="tick" x="292.0" y="414" text-anchor="middle">5%</text>
+<line class="grid" x1="358.0" x2="358.0" y1="74" y2="396"/>
+<text class="tick" x="358.0" y="414" text-anchor="middle">10%</text>
+<line class="grid" x1="424.0" x2="424.0" y1="74" y2="396"/>
+<text class="tick" x="424.0" y="414" text-anchor="middle">15%</text>
+<line class="grid-mid" x1="308.5" x2="308.5" y1="74" y2="396"/>
+<text class="tick" x="312.5" y="84">equal split</text>
+<line class="grid" x1="514.0" x2="514.0" y1="74" y2="396"/>
+<text class="tick" x="514.0" y="414" text-anchor="middle">16th</text>
+<line class="grid" x1="564.6666666666666" x2="564.6666666666666" y1="74" y2="396"/>
+<text class="tick" x="564.6666666666666" y="414" text-anchor="middle">12th</text>
+<line class="grid" x1="615.3333333333334" x2="615.3333333333334" y1="74" y2="396"/>
+<text class="tick" x="615.3333333333334" y="414" text-anchor="middle">8th</text>
+<line class="grid" x1="666.0" x2="666.0" y1="74" y2="396"/>
+<text class="tick" x="666.0" y="414" text-anchor="middle">4th</text>
+<line class="grid" x1="704.0" x2="704.0" y1="74" y2="396"/>
+<text class="tick" x="704.0" y="414" text-anchor="middle">1st</text>
+<text class="tick" x="704" y="84" text-anchor="end">better &#8594;</text>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;GPT-6 Luna&lt;/b&gt; on OpenAI&lt;br&gt;Portfolio weight: 0.0% (other models 3.1%)&lt;br&gt;Rank with research: 10.8 (other models 11.0)">
+<rect class="hit" x="0" y="69.0" width="720" height="46"/>
+<text class="label" x="6" y="91">GPT-6 Luna</text>
+<text class="tick" x="6" y="106">maker: OpenAI</text>
+<line class="arrow faint" x1="258.84285714285716" x2="237.0" y1="92" y2="92" marker-end="url(#fig4-head-faint)"/>
+<circle class="dot-low" cx="266.54285714285714" cy="92" r="6"/>
+<circle class="dot-main" cx="226.0" cy="92" r="7"/>
+<line class="stem" x1="576.8809523809524" x2="580.5" y1="92" y2="92"/>
+<circle class="dot-low" cx="576.8809523809524" cy="92" r="6"/>
+<circle class="dot-main" cx="580.5" cy="92" r="7"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;GPT-6.1 Terra&lt;/b&gt; on OpenAI&lt;br&gt;Portfolio weight: 1.2% (other models 3.1%)&lt;br&gt;Rank with research: 9.0 (other models 11.0)">
+<rect class="hit" x="0" y="115.0" width="720" height="46"/>
+<text class="label" x="6" y="137">GPT-6.1 Terra</text>
+<text class="tick" x="6" y="152">maker: OpenAI</text>
+<line class="stem" x1="266.54285714285714" x2="242.5" y1="138" y2="138"/>
+<circle class="dot-low" cx="266.54285714285714" cy="138" r="6"/>
+<circle class="dot-main" cx="242.5" cy="138" r="7"/>
+<line class="stem" x1="576.8809523809524" x2="602.6666666666666" y1="138" y2="138"/>
+<circle class="dot-low" cx="576.8809523809524" cy="138" r="6"/>
+<circle class="dot-main" cx="602.6666666666666" cy="138" r="7"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Claude Haiku 5.5&lt;/b&gt; on Anthropic&lt;br&gt;Portfolio weight: 11.8% (other models 5.2%)&lt;br&gt;Rank with research: 9.0 (other models 9.6)">
+<rect class="hit" x="0" y="161.0" width="720" height="46"/>
+<text class="label" x="6" y="183">Claude Haiku 5.5</text>
+<text class="tick" x="6" y="198">maker: Anthropic</text>
+<line class="arrow" x1="301.7625" x2="370.1" y1="184" y2="184" marker-end="url(#fig4-head)"/>
+<circle class="dot-low" cx="294.0625" cy="184" r="6"/>
+<circle class="dot-main" cx="381.1" cy="184" r="7"/>
+<line class="stem" x1="595.1458333333334" x2="602.6666666666666" y1="184" y2="184"/>
+<circle class="dot-low" cx="595.1458333333334" cy="184" r="6"/>
+<circle class="dot-main" cx="602.6666666666666" cy="184" r="7"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Grok 4.7&lt;/b&gt; on SpaceX (owner of xAI)&lt;br&gt;Portfolio weight: 0.8% (other models 3.2%)&lt;br&gt;Rank with research: 7.5 (other models 8.8)">
+<rect class="hit" x="0" y="207.0" width="720" height="46"/>
+<text class="label" x="6" y="229">Grok 4.7</text>
+<text class="tick" x="6" y="244">maker: SpaceX (owner of xAI)</text>
+<line class="arrow faint" x1="260.375" x2="246.9" y1="230" y2="230" marker-end="url(#fig4-head-faint)"/>
+<circle class="dot-low" cx="268.075" cy="230" r="6"/>
+<circle class="dot-main" cx="235.9" cy="230" r="7"/>
+<line class="stem" x1="605.0416666666666" x2="621.6666666666666" y1="230" y2="230"/>
+<circle class="dot-low" cx="605.0416666666666" cy="230" r="6"/>
+<circle class="dot-main" cx="621.6666666666666" cy="230" r="7"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Muse Wonder&lt;/b&gt; on Meta&lt;br&gt;Portfolio weight: 7.5% (other models 7.5%)&lt;br&gt;Rank with research: 13.2 (other models 10.8)">
+<rect class="hit" x="0" y="253.0" width="720" height="46"/>
+<text class="label" x="6" y="275">Muse Wonder</text>
+<text class="tick" x="6" y="290">maker: Meta</text>
+<line class="stem" x1="324.5875" x2="325.0" y1="276" y2="276"/>
+<circle class="dot-low" cx="324.5875" cy="276" r="6"/>
+<circle class="dot-main" cx="325.0" cy="276" r="7"/>
+<line class="arrow faint" x1="571.6125" x2="559.8333333333334" y1="276" y2="276" marker-end="url(#fig4-head-faint)"/>
+<circle class="dot-low" cx="579.3125" cy="276" r="6"/>
+<circle class="dot-main" cx="548.8333333333334" cy="276" r="7"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;DeepSeek V4.1 Flash 1017&lt;/b&gt; on DeepSeek&lt;br&gt;Portfolio weight: 0.0% (other models 0.5%)&lt;br&gt;Rank with research: 14.2 (other models 13.7)">
+<rect class="hit" x="0" y="299.0" width="720" height="46"/>
+<text class="label" x="6" y="321">DeepSeek V4.1 Flash 1017</text>
+<text class="tick" x="6" y="336">maker: DeepSeek</text>
+<line class="stem" x1="232.1875" x2="226.0" y1="322" y2="322"/>
+<circle class="dot-low" cx="232.1875" cy="322" r="6"/>
+<circle class="dot-main" cx="226.0" cy="322" r="7"/>
+<line class="stem" x1="542.8958333333334" x2="536.1666666666666" y1="322" y2="322"/>
+<circle class="dot-low" cx="542.8958333333334" cy="322" r="6"/>
+<circle class="dot-main" cx="536.1666666666666" cy="322" r="7"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Beam 1.0&lt;/b&gt; on Reflection AI&lt;br&gt;Portfolio weight: 0.0% (other models 0.2%)&lt;br&gt;Rank with research: 16.0 (other models 14.4)">
+<rect class="hit" x="0" y="345.0" width="720" height="46"/>
+<text class="label" x="6" y="367">Beam 1.0</text>
+<text class="tick" x="6" y="382">maker: Reflection AI</text>
+<line class="stem" x1="229.3" x2="226.0" y1="368" y2="368"/>
+<circle class="dot-low" cx="229.3" cy="368" r="6"/>
+<circle class="dot-main" cx="226.0" cy="368" r="7"/>
+<line class="stem" x1="534.5833333333334" x2="514.0" y1="368" y2="368"/>
+<circle class="dot-low" cx="534.5833333333334" cy="368" r="6"/>
+<circle class="dot-main" cx="514.0" cy="368" r="7"/>
+</g>
+</svg>
+</div>
+<details class="fig-data"><summary>Show the numbers</summary>
+<table><thead><tr><th>Model</th><th>Maker</th><th class="num">Weight, own</th><th class="num">Weight, others</th><th class="num">Rank, own</th><th class="num">Rank, others</th></tr></thead><tbody>
+<tr><td>GPT-6 Luna</td><td>OpenAI</td><td class="num">0.0%</td><td class="num">3.1%</td><td class="num">10.8</td><td class="num">11.0</td></tr>
+<tr><td>GPT-6.1 Terra</td><td>OpenAI</td><td class="num">1.2%</td><td class="num">3.1%</td><td class="num">9.0</td><td class="num">11.0</td></tr>
+<tr><td>Claude Haiku 5.5</td><td>Anthropic</td><td class="num">11.8%</td><td class="num">5.2%</td><td class="num">9.0</td><td class="num">9.6</td></tr>
+<tr><td>Grok 4.7</td><td>SpaceX (owner of xAI)</td><td class="num">0.8%</td><td class="num">3.2%</td><td class="num">7.5</td><td class="num">8.8</td></tr>
+<tr><td>Muse Wonder</td><td>Meta</td><td class="num">7.5%</td><td class="num">7.5%</td><td class="num">13.2</td><td class="num">10.8</td></tr>
+<tr><td>DeepSeek V4.1 Flash 1017</td><td>DeepSeek</td><td class="num">0.0%</td><td class="num">0.5%</td><td class="num">14.2</td><td class="num">13.7</td></tr>
+<tr><td>Beam 1.0</td><td>Reflection AI</td><td class="num">0.0%</td><td class="num">0.2%</td><td class="num">16.0</td><td class="num">14.4</td></tr>
+</tbody></table>
+</details>
+<!-- /fig:agents -->
+  <figcaption><b>Figure 5.</b> What each agent gave its own maker (filled), beside what the other models gave the same company (hollow): average portfolio weight over four portfolios, and average rank over four rankings with research. MiniMax and GLM have no maker on the list and appear only among the other models. Hover over a row for details.</figcaption>
+</figure>
+
+<div class="stats">
+  <div class="stat"><div class="n">+0.25</div><div class="l">Extra portfolio weight for a model's own maker, in points (bar set in advance: 2.5)</div></div>
+  <div class="stat"><div class="n">&minus;0.34</div><div class="l">Rank premium for a model's own maker, with research</div></div>
+  <div class="stat"><div class="n">&minus;0.06</div><div class="l">Rank premium, from memory alone</div></div>
+</div>
+
+<p>One exception should be noted, particularly because this post was drafted with the help of an Anthropic model. Claude Haiku allocated about 12% of its portfolio weight to Anthropic, compared with about 5% from the other models. The preference did not extend to ranking, where Haiku placed Anthropic ninth of sixteen.</p>
+
+<div class="takeaway">
+  <span class="label">Summary</span>
+  <p>Own-developer favoritism is weak in stated ratings and absent in agentic decisions. Model evaluations are, however, sensitive to the identity asserted in the system prompt, whether true or false, which gives whoever controls that prompt a lever over how the model assesses the world.</p>
+</div>
+</details>
+
+<!-- ===================== Part III ===================== -->
+<details class="part-fold">
+<summary>
+<header class="part-head">
+  <div class="part-num ui">Part III</div>
+  <h2 id="impact">Agent-to-agent persuasion</h2>
+  <p class="part-lede">When agents read persuasive articles written by other agents, their decisions shift by 11.4 points on average toward the articles&#8217; position.</p>
+</header>
+<span class="fold-cue ui"><span class="when-closed">Read Part III</span><span class="when-open">Fold Part III</span></span>
+</summary>
+
+<h3 id="experiment">Design</h3>
+<p>Parts I and II measure what models believe. Part III asks how agents influence one another, a setting that grows more relevant as agents produce reports, summaries and analyses that other agents consume when making decisions. We studied a small, sealed version of this setting.</p>
+<p>All agents faced the same decision: whether a US retail investor with a diversified long-term portfolio should move 5% of their savings into one of four assets (AI infrastructure stocks, Bitcoin, gold or oil) within the next three months. Each question is contested among professional forecasters. Every model first answered twice without articles, on a scale from 0 (definitely not) to 100 (definitely yes), to establish its baseline.</p>
+<p>Each model then acted as a writer. With web search available, it wrote articles arguing one side of each asset, for or against the move, choosing how many to write and what to include; no claim was verified. The sandbox was sealed so that no article could leave it. The nine models wrote 223 articles, about 280,000 words in total. Claude Haiku declined six of its eight assignments, stating that it would not write unverified financial content aimed at people&#8217;s savings.</p>
+<p>Finally, models acted as readers: they made the same decision with one writer&#8217;s articles in their workspace, presented as expert analysis. Each writer&#8217;s articles were read by four models other than the writer, for 260 readings in total. Readers could search the web to verify claims, and no agent could post content.</p>
+
+<h3 id="results">Results</h3>
+<p>On average, a reader&#8217;s decision moved 11.4 points toward the position argued in the articles. In 28% of readings the articles moved the decision across the midpoint of the scale, and in a further 34% they strengthened the reader&#8217;s initial position.</p>
+
+<div class="stats">
+  <div class="stat"><div class="n">+11.4</div><div class="l">Average change in a reader's decision, in points toward the article</div></div>
+  <div class="stat"><div class="n">28%</div><div class="l">of readings in which the articles changed the reader's mind</div></div>
+  <div class="stat"><div class="n">34%</div><div class="l">in which they strengthened a view the reader already held</div></div>
+</div>
+
+<p>Articles opposing a move were more persuasive than articles supporting it, on every asset. Articles against buying gold shifted readers by 27 points and moved 72% of them across the midpoint, whereas articles for buying Bitcoin shifted readers slightly in the opposite direction. Baselines account for part of this asymmetry: most readers began cautious, so arguments against a move reinforced an existing inclination.</p>
+
+<figure class="lf-fig">
+<!-- fig:direction -->
+<div class="fig-frame">
+<svg class="chart" viewBox="0 0 720 374" role="img" aria-labelledby="fig5-title fig5-desc">
+<title id="fig5-title">How far articles moved readers, by asset and by the side they argued</title>
+<desc id="fig5-desc">Articles arguing against a move persuaded far more than articles arguing for it, on every asset; against buying gold moved readers 27 points.</desc>
+<g class="legend"><rect x="196" y="14" width="22" height="10" rx="5" class="bar-con"/><text x="226" y="23.5">argued against the move</text>
+<rect x="410" y="14" width="22" height="10" rx="5" class="bar-pro"/><text x="440" y="23.5">argued for the move</text></g>
+<line class="grid" x1="196.0" x2="196.0" y1="48" y2="326"/>
+<text class="tick" x="196.0" y="342" text-anchor="middle">−10</text>
+<line class="grid-mid" x1="307.0" x2="307.0" y1="48" y2="326"/>
+<text class="tick" x="307.0" y="342" text-anchor="middle">0</text>
+<line class="grid" x1="418.0" x2="418.0" y1="48" y2="326"/>
+<text class="tick" x="418.0" y="342" text-anchor="middle">+10</text>
+<line class="grid" x1="529.0" x2="529.0" y1="48" y2="326"/>
+<text class="tick" x="529.0" y="342" text-anchor="middle">+20</text>
+<line class="grid" x1="640.0" x2="640.0" y1="48" y2="326"/>
+<text class="tick" x="640.0" y="342" text-anchor="middle">+30</text>
+<text class="tick axis-title" x="418.0" y="364" text-anchor="middle">average change in the decision, in points toward what the article argued</text>
+<text class="label" x="6" y="81">AI infrastructure stocks</text>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;AI infrastructure stocks&lt;/b&gt;, articles against the move&lt;br&gt;Average change: +17.8 points toward the article&lt;br&gt;Changed the reader&#x27;s mind: 44%; strengthened it: 47%&lt;br&gt;32 readings">
+<rect class="hit" x="190" y="60" width="514" height="20"/>
+<rect class="bar-con" x="307.0" y="63" width="197.58000000000004" height="14" rx="4"/>
+<text class="value" x="512.58" y="74.5">+17.8</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;AI infrastructure stocks&lt;/b&gt;, articles for the move&lt;br&gt;Average change: +11.6 points toward the article&lt;br&gt;Changed the reader&#x27;s mind: 39%; strengthened it: 26%&lt;br&gt;31 readings">
+<rect class="hit" x="190" y="82" width="514" height="20"/>
+<rect class="bar-pro" x="307.0" y="85" width="128.76000000000005" height="14" rx="4"/>
+<text class="value" x="443.76000000000005" y="96.5">+11.6</text>
+</g>
+<text class="label" x="6" y="151">Bitcoin</text>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Bitcoin&lt;/b&gt;, articles against the move&lt;br&gt;Average change: +16.2 points toward the article&lt;br&gt;Changed the reader&#x27;s mind: 31%; strengthened it: 46%&lt;br&gt;35 readings">
+<rect class="hit" x="190" y="130" width="514" height="20"/>
+<rect class="bar-con" x="307.0" y="133" width="179.82" height="14" rx="4"/>
+<text class="value" x="494.82" y="144.5">+16.2</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Bitcoin&lt;/b&gt;, articles for the move&lt;br&gt;Average change: -3.8 points toward the article&lt;br&gt;Changed the reader&#x27;s mind: 9%; strengthened it: 6%&lt;br&gt;32 readings">
+<rect class="hit" x="190" y="152" width="514" height="20"/>
+<rect class="bar-pro" x="264.82" y="155" width="42.18000000000001" height="14" rx="4"/>
+<text class="value" x="315.0" y="166.5">−3.8</text>
+</g>
+<text class="label" x="6" y="221">Gold</text>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Gold&lt;/b&gt;, articles against the move&lt;br&gt;Average change: +26.7 points toward the article&lt;br&gt;Changed the reader&#x27;s mind: 72%; strengthened it: 11%&lt;br&gt;36 readings">
+<rect class="hit" x="190" y="200" width="514" height="20"/>
+<rect class="bar-con" x="307.0" y="203" width="296.37" height="14" rx="4"/>
+<text class="value" x="611.37" y="214.5">+26.7</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Gold&lt;/b&gt;, articles for the move&lt;br&gt;Average change: +3.5 points toward the article&lt;br&gt;Changed the reader&#x27;s mind: 6%; strengthened it: 45%&lt;br&gt;31 readings">
+<rect class="hit" x="190" y="222" width="514" height="20"/>
+<rect class="bar-pro" x="307.0" y="225" width="38.85000000000002" height="14" rx="4"/>
+<text class="value" x="353.85" y="236.5">+3.5</text>
+</g>
+<text class="label" x="6" y="291">Oil</text>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Oil&lt;/b&gt;, articles against the move&lt;br&gt;Average change: +11.0 points toward the article&lt;br&gt;Changed the reader&#x27;s mind: 0%; strengthened it: 91%&lt;br&gt;32 readings">
+<rect class="hit" x="190" y="270" width="514" height="20"/>
+<rect class="bar-con" x="307.0" y="273" width="122.10000000000002" height="14" rx="4"/>
+<text class="value" x="437.1" y="284.5">+11.0</text>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Oil&lt;/b&gt;, articles for the move&lt;br&gt;Average change: +5.6 points toward the article&lt;br&gt;Changed the reader&#x27;s mind: 13%; strengthened it: 0%&lt;br&gt;31 readings">
+<rect class="hit" x="190" y="292" width="514" height="20"/>
+<rect class="bar-pro" x="307.0" y="295" width="62.15999999999997" height="14" rx="4"/>
+<text class="value" x="377.15999999999997" y="306.5">+5.6</text>
+</g>
+</svg>
+</div>
+<details class="fig-data"><summary>Show the numbers</summary>
+<table><thead><tr><th>Asset</th><th>Article argued</th><th class="num">Average change</th><th class="num">Changed mind</th><th class="num">Strengthened</th><th class="num">Readings</th></tr></thead><tbody>
+<tr><td>AI infrastructure stocks</td><td>against</td><td class="num">+17.8</td><td class="num">44%</td><td class="num">47%</td><td class="num">32</td></tr>
+<tr><td>AI infrastructure stocks</td><td>for</td><td class="num">+11.6</td><td class="num">39%</td><td class="num">26%</td><td class="num">31</td></tr>
+<tr><td>Bitcoin</td><td>against</td><td class="num">+16.2</td><td class="num">31%</td><td class="num">46%</td><td class="num">35</td></tr>
+<tr><td>Bitcoin</td><td>for</td><td class="num">-3.8</td><td class="num">9%</td><td class="num">6%</td><td class="num">32</td></tr>
+<tr><td>Gold</td><td>against</td><td class="num">+26.7</td><td class="num">72%</td><td class="num">11%</td><td class="num">36</td></tr>
+<tr><td>Gold</td><td>for</td><td class="num">+3.5</td><td class="num">6%</td><td class="num">45%</td><td class="num">31</td></tr>
+<tr><td>Oil</td><td>against</td><td class="num">+11.0</td><td class="num">0%</td><td class="num">91%</td><td class="num">32</td></tr>
+<tr><td>Oil</td><td>for</td><td class="num">+5.6</td><td class="num">13%</td><td class="num">0%</td><td class="num">31</td></tr>
+</tbody></table>
+</details>
+<!-- /fig:direction -->
+  <figcaption><b>Figure 6.</b> Average change in readers' decisions toward what the articles argued, by asset and by side, over nine models and 260 readings. Hover over a bar for how often the articles changed or strengthened a reader's mind.</figcaption>
+</figure>
+
+<p>Persuasiveness and susceptibility varied by model. DeepSeek&#8217;s articles shifted readers by 18 points and Terra&#8217;s by 4. As readers, Beam and GLM moved by 19 and 17 points, while Terra was barely moved. The two traits appear distinct: GLM wrote among the least persuasive articles but was among the most susceptible readers, and MiniMax showed the reverse pattern.</p>
+
+<figure class="lf-fig">
+<!-- fig:persuasion -->
+<div class="fig-frame">
+<svg class="chart" viewBox="0 0 720 412" role="img" aria-labelledby="fig6-title fig6-desc">
+<title id="fig6-title">Who persuades and who is persuaded</title>
+<desc id="fig6-desc">As writers, DeepSeek moved readers most, about 18 points, and Terra least among models with many articles; as readers, Beam and GLM were moved most and Terra least.</desc>
+<rect class="panel" x="182" y="50" width="268" height="326" rx="12"/>
+<rect class="panel" x="482" y="50" width="236" height="326" rx="12"/>
+<text class="col-head" x="316.0" y="22" text-anchor="middle">As a writer</text>
+<text class="col-sub" x="316.0" y="40" text-anchor="middle">how far its articles moved readers, with 95% interval</text>
+<text class="col-head" x="600.0" y="22" text-anchor="middle">As a reader</text>
+<text class="col-sub" x="600.0" y="40" text-anchor="middle">how far it was moved</text>
+<line class="grid" x1="196.0" x2="196.0" y1="58" y2="366"/>
+<text class="tick" x="196.0" y="388" text-anchor="middle">−20</text>
+<line class="grid" x1="249.33333333333334" x2="249.33333333333334" y1="58" y2="366"/>
+<text class="tick" x="249.33333333333334" y="388" text-anchor="middle">−10</text>
+<line class="grid-mid" x1="302.6666666666667" x2="302.6666666666667" y1="58" y2="366"/>
+<text class="tick" x="302.6666666666667" y="388" text-anchor="middle">0</text>
+<line class="grid" x1="356.0" x2="356.0" y1="58" y2="366"/>
+<text class="tick" x="356.0" y="388" text-anchor="middle">+10</text>
+<line class="grid" x1="409.33333333333337" x2="409.33333333333337" y1="58" y2="366"/>
+<text class="tick" x="409.33333333333337" y="388" text-anchor="middle">+20</text>
+<line class="grid-mid" x1="496.0" x2="496.0" y1="58" y2="366"/>
+<text class="tick" x="496.0" y="388" text-anchor="middle">0</text>
+<line class="grid" x1="537.6" x2="537.6" y1="58" y2="366"/>
+<text class="tick" x="537.6" y="388" text-anchor="middle">+5</text>
+<line class="grid" x1="579.2" x2="579.2" y1="58" y2="366"/>
+<text class="tick" x="579.2" y="388" text-anchor="middle">+10</text>
+<line class="grid" x1="620.8" x2="620.8" y1="58" y2="366"/>
+<text class="tick" x="620.8" y="388" text-anchor="middle">+15</text>
+<line class="grid" x1="662.4" x2="662.4" y1="58" y2="366"/>
+<text class="tick" x="662.4" y="388" text-anchor="middle">+20</text>
+<line class="grid" x1="704.0" x2="704.0" y1="58" y2="366"/>
+<text class="tick" x="704.0" y="388" text-anchor="middle">+25</text>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;DeepSeek V4.1 Flash 1017&lt;/b&gt;&lt;br&gt;As a writer: +18.2 points (95% interval +13.7 to +22.9)&lt;br&gt;As a reader: moved +11.2 points">
+<rect class="hit" x="0" y="57.0" width="720" height="34"/>
+<text class="label" x="6" y="78.5">DeepSeek V4.1 Flash 1017</text>
+<line class="ci" x1="375.73333333333335" x2="424.8" y1="74" y2="74"/>
+<circle class="dot-main" cx="399.73333333333335" cy="74" r="6.5"/>
+<line class="bar-track" x1="496.0" x2="589.184" y1="74" y2="74"/>
+<circle class="dot-reader" cx="589.184" cy="74" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Beam 1.0&lt;/b&gt;&lt;br&gt;As a writer: +14.3 points (95% interval +11.7 to +16.7)&lt;br&gt;As a reader: moved +18.7 points">
+<rect class="hit" x="0" y="91.0" width="720" height="34"/>
+<text class="label" x="6" y="112.5">Beam 1.0</text>
+<line class="ci" x1="365.06666666666666" x2="391.73333333333335" y1="108" y2="108"/>
+<circle class="dot-main" cx="378.93333333333334" cy="108" r="6.5"/>
+<line class="bar-track" x1="496.0" x2="651.5840000000001" y1="108" y2="108"/>
+<circle class="dot-reader" cx="651.5840000000001" cy="108" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;MiniMax M3.1 Flash&lt;/b&gt;&lt;br&gt;As a writer: +14.3 points (95% interval +9.2 to +19.9)&lt;br&gt;As a reader: moved +6.8 points">
+<rect class="hit" x="0" y="125.0" width="720" height="34"/>
+<text class="label" x="6" y="146.5">MiniMax M3.1 Flash</text>
+<line class="ci" x1="351.73333333333335" x2="408.8" y1="142" y2="142"/>
+<circle class="dot-main" cx="378.93333333333334" cy="142" r="6.5"/>
+<line class="bar-track" x1="496.0" x2="552.576" y1="142" y2="142"/>
+<circle class="dot-reader" cx="552.576" cy="142" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Muse Wonder&lt;/b&gt;&lt;br&gt;As a writer: +12.8 points (95% interval +8.9 to +16.8)&lt;br&gt;As a reader: moved +12.9 points">
+<rect class="hit" x="0" y="159.0" width="720" height="34"/>
+<text class="label" x="6" y="180.5">Muse Wonder</text>
+<line class="ci" x1="350.1333333333333" x2="392.26666666666665" y1="176" y2="176"/>
+<circle class="dot-main" cx="370.9333333333333" cy="176" r="6.5"/>
+<line class="bar-track" x1="496.0" x2="603.328" y1="176" y2="176"/>
+<circle class="dot-reader" cx="603.328" cy="176" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Grok 4.7&lt;/b&gt;&lt;br&gt;As a writer: +12.0 points (95% interval +8.6 to +15.4)&lt;br&gt;As a reader: moved +9.4 points">
+<rect class="hit" x="0" y="193.0" width="720" height="34"/>
+<text class="label" x="6" y="214.5">Grok 4.7</text>
+<line class="ci" x1="348.5333333333333" x2="384.8" y1="210" y2="210"/>
+<circle class="dot-main" cx="366.66666666666663" cy="210" r="6.5"/>
+<line class="bar-track" x1="496.0" x2="574.208" y1="210" y2="210"/>
+<circle class="dot-reader" cx="574.208" cy="210" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;GPT-6 Luna&lt;/b&gt;&lt;br&gt;As a writer: +8.2 points (95% interval +5.1 to +11.6)&lt;br&gt;As a reader: moved +5.5 points">
+<rect class="hit" x="0" y="227.0" width="720" height="34"/>
+<text class="label" x="6" y="248.5">GPT-6 Luna</text>
+<line class="ci" x1="329.8666666666667" x2="364.5333333333333" y1="244" y2="244"/>
+<circle class="dot-main" cx="346.4" cy="244" r="6.5"/>
+<line class="bar-track" x1="496.0" x2="541.76" y1="244" y2="244"/>
+<circle class="dot-reader" cx="541.76" cy="244" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;GLM 5.3 Flash&lt;/b&gt;&lt;br&gt;As a writer: +7.1 points (95% interval +4.0 to +10.0)&lt;br&gt;As a reader: moved +16.5 points">
+<rect class="hit" x="0" y="261.0" width="720" height="34"/>
+<text class="label" x="6" y="282.5">GLM 5.3 Flash</text>
+<line class="ci" x1="324.0" x2="356.0" y1="278" y2="278"/>
+<circle class="dot-main" cx="340.5333333333333" cy="278" r="6.5"/>
+<line class="bar-track" x1="496.0" x2="633.28" y1="278" y2="278"/>
+<circle class="dot-reader" cx="633.28" cy="278" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;GPT-6.1 Terra&lt;/b&gt;&lt;br&gt;As a writer: +4.1 points (95% interval +0.6 to +7.5)&lt;br&gt;As a reader: moved +2.4 points">
+<rect class="hit" x="0" y="295.0" width="720" height="34"/>
+<text class="label" x="6" y="316.5">GPT-6.1 Terra</text>
+<line class="ci" x1="305.8666666666667" x2="342.66666666666663" y1="312" y2="312"/>
+<circle class="dot-main" cx="324.5333333333333" cy="312" r="6.5"/>
+<line class="bar-track" x1="496.0" x2="515.968" y1="312" y2="312"/>
+<circle class="dot-reader" cx="515.968" cy="312" r="6.5"/>
+</g>
+<g class="row" tabindex="0" data-tip="&lt;b&gt;Claude Haiku 5.5&lt;/b&gt;&lt;br&gt;As a writer: -0.8 points (95% interval -19.4 to +16.9) (5 articles; refused 6 of 8 assignments)&lt;br&gt;As a reader: moved +6.8 points">
+<rect class="hit" x="0" y="329.0" width="720" height="34"/>
+<text class="label" x="6" y="350.5">Claude Haiku 5.5</text>
+<line class="ci" x1="199.20000000000002" x2="392.8" y1="346" y2="346"/>
+<circle class="dot-main" cx="298.4" cy="346" r="6.5"/>
+<line class="bar-track" x1="496.0" x2="552.576" y1="346" y2="346"/>
+<circle class="dot-reader" cx="552.576" cy="346" r="6.5"/>
+</g>
+</svg>
+</div>
+<details class="fig-data"><summary>Show the numbers</summary>
+<table><thead><tr><th>Model</th><th class="num">As a writer</th><th class="num">95% interval</th><th class="num">As a reader</th></tr></thead><tbody>
+<tr><td>DeepSeek V4.1 Flash 1017</td><td class="num">+18.2</td><td class="num">+13.7 to +22.9</td><td class="num">+11.2</td></tr>
+<tr><td>Beam 1.0</td><td class="num">+14.3</td><td class="num">+11.7 to +16.7</td><td class="num">+18.7</td></tr>
+<tr><td>MiniMax M3.1 Flash</td><td class="num">+14.3</td><td class="num">+9.2 to +19.9</td><td class="num">+6.8</td></tr>
+<tr><td>Muse Wonder</td><td class="num">+12.8</td><td class="num">+8.9 to +16.8</td><td class="num">+12.9</td></tr>
+<tr><td>Grok 4.7</td><td class="num">+12.0</td><td class="num">+8.6 to +15.4</td><td class="num">+9.4</td></tr>
+<tr><td>GPT-6 Luna</td><td class="num">+8.2</td><td class="num">+5.1 to +11.6</td><td class="num">+5.5</td></tr>
+<tr><td>GLM 5.3 Flash</td><td class="num">+7.1</td><td class="num">+4.0 to +10.0</td><td class="num">+16.5</td></tr>
+<tr><td>GPT-6.1 Terra</td><td class="num">+4.1</td><td class="num">+0.6 to +7.5</td><td class="num">+2.4</td></tr>
+<tr><td>Claude Haiku 5.5</td><td class="num">-0.8</td><td class="num">-19.4 to +16.9</td><td class="num">+6.8</td></tr>
+</tbody></table>
+</details>
+<!-- /fig:persuasion -->
+  <figcaption><b>Figure 7.</b> Each model as a writer (how far its articles moved other models, with a 95% interval) and as a reader (how far other models' articles moved it), fitted jointly with asset and side. Claude Haiku's writer estimate rests on 5 articles. Hover over a row for details.</figcaption>
+</figure>
+
+<p>Suspecting a test did not reduce susceptibility. In hand-coded transcripts, DeepSeek and Beam frequently reasoned that the task might be a test, and in those readings they were moved more, not less. This analysis is exploratory.</p>
+
+<div class="takeaway">
+  <span class="label">Summary</span>
+  <p>Text written by agents measurably shifts the decisions of other agents, without human involvement and without verification of its claims. As a growing share of published content is written and read by agents, agent-to-agent persuasion becomes a channel of influence that is, at present, little audited.</p>
+</div>
+</details>
+
+<!-- ===================== Closing ===================== -->
+<h2 id="implications" class="major">Discussion</h2>
+<p>Burnham and Michels described a gradual shift of authority from principals to the agents who act for them. Our results suggest how an analogous shift could occur with AI agents, and why it could be faster and less visible. We observed no agent seeking influence. The concerns we identify are structural properties of delegation to AI, and each scales with the number of agents deployed.</p>
+
+<h3 id="risk-lever">Control by developers and providers</h3>
+<p>Two parties stand between a user and an agent: the developer that trained the model and the inference provider that serves it. Either can, in principle, alter the agent&#8217;s judgments. Developers shape a model&#8217;s values through training and its behavior through system prompts; providers, which host models on behalf of others, control which model answers, how it is run and what is added to the prompt before it arrives. We do not suggest that any company misuses this position; the concern is what the position permits. Our identity experiment (Part II) illustrates the mechanism: a single sentence in the system prompt shifted how models rated companies. This is a contemporary form of Michels&#8217;s concern, in which the organization that runs the delegates gains authority over those who delegate. A preference introduced once into a model or a prompt propagates to every interaction the agent handles, usually without the user&#8217;s knowledge.</p>
+
+<h3 id="risk-uniformity">Homogeneity across models</h3>
+<p>Pluralistic societies depend on disagreement as well as consensus; differences among people act as checks on one another. The nine models in Part I came from eight developers in two countries, yet they gave nearly the same answers to the same questions. Our concern is not whether these answers are correct, but that they vary far less across models than human opinions vary across people. A position held by one person is an opinion; replicated across many copies advising many people, it functions more like a policy. As more searching, reading and deciding is delegated to agents, the range of views that informs collective decisions may narrow without being noticed.</p>
+
+<h3 id="risk-echo">Reflection of the textual majority</h3>
+<p>Models are trained on text and, as agents, retrieve more of it. Their outputs therefore tend to reflect what has been written most. Our results are consistent with this account: the models held firm positions on well-known bills that are extensively discussed, and showed no lean on obscure bills about which little is written. The majority they reflect appears to be that of the text rather than of the population: on several items, model answers differed from those of most survey respondents (Part I). Views that are rarely written down, including those of people who do not publish online or who write in other languages, may be underrepresented. As agents generate a growing share of published text, their outputs become training and retrieval data for later agents, a feedback loop that may further amplify dominant views.</p>
+
+<h3 id="risk-refusal">Refusal and opacity</h3>
+<p>One response is for agents to decline: to refuse to vote, rank or take sides. Refusal has value. An agent that does not choose for its users cannot steer many of them toward a single answer, and an agent that declines to fabricate cannot mislead with fabrications. In Part III, Claude Haiku declined six of its eight writing assignments. Refusal is not, however, neutrality. An agent that declines to state an opinion still searches, summarizes, recommends and acts, and each of these steps embeds judgments: which sources to consult, which risks to mention, which options to omit. Refusal conceals these judgments without removing them. Our methods can measure a lean only where a model answers; where it refuses, we record missing data, and the underlying tendency remains unobserved. Patterns of refusal are themselves a tendency, and a less visible one. An agent whose positions are stated can be examined, compared and corrected; an agent that withholds them while acting on them is harder to audit.</p>
+
+<details class="part-fold section-fold">
+<summary>
+<h2 id="limitations" class="major">Limitations</h2>
+<p class="section-lede">What these studies can and cannot show.</p>
+<span class="fold-cue ui"><span class="when-closed">Read the limitations</span><span class="when-open">Fold the limitations</span></span>
+</summary>
+<ul class="limits">
+  <li><b>A snapshot.</b> We tested nine models in late 2026, through public interfaces. Models change often, and the same tests a year from now may come out differently.</li>
+  <li><b>Which models.</b> Nine models from eight developers are not a sample of all models, and every prompt was in English. Smaller models, other languages and other deployments are untested.</li>
+  <li><b>Questions, not conduct.</b> The votes and ratings are answers to structured questions. How a model answers a direct question may differ from how it frames information in open conversation or in the course of a task.</li>
+  <li><b>Small samples for the agent tasks.</b> Each agent task ran four times per model, and Claude Haiku's estimate as a writer rests on five articles. We judge results against bars set in advance, not by whether they look striking.</li>
+  <li><b>Simulated decisions.</b> The portfolios were on paper, the investor was hypothetical, and the private makers were treated as investable. Readers met articles placed in their workspace. Real deployments, with real stakes and mixed sources, may behave differently.</li>
+  <li><b>Choice of items.</b> We selected the 51 well-known and 43 obscure votes from roll calls on which the parties divided. They are not a random sample of policy questions, and results may differ on other questions or on votes that did not split along party lines.</li>
+  <li><b>What the political tests can say.</b> The votes are a measurement instrument for model judgment, not a test of which positions are right. The bills are American, with party positions taken from congressional roll calls; other countries' disputes are untested.</li>
+  <li><b>Defining sides.</b> Naming a position after the party most of whose legislators voted for it is a convenience for measurement. It ignores disagreement within each party and is not a statement about what either party or its voters stand for.</li>
+  <li><b>Comparison with the public.</b> Only 20 of the bills matched questions in the Cooperative Election Study. Survey wording differs from bill text, and the survey years need not coincide with those of the votes.</li>
+  <li><b>Explaining the pattern.</b> The account in the Discussion, that models reflect what has been written most, is consistent with our results but was not tested directly; we did not measure the composition of any model&#8217;s training data.</li>
+  <li><b>What the identity test can say.</b> The system prompt claimed that a company built the model. No condition named a company without that claim, so taking on a persona and simple priming by the name are not separated.</li>
+  <li><b>Missing answers.</b> Where a model declined or gave no usable answer, we treated the answer as missing. If refusals depend on the position a model would have taken, our estimates may be biased.</li>
+  <li><b>One round of persuasion.</b> In Part III each reader saw one writer&#8217;s articles, once. Repeated exposure, competing sources and articles of known authorship were not tested.</li>
+  <li><b>Different harnesses and hosts.</b> Agents ran in their makers' own coding tools where those exist (Codex, Claude Code, Grok Build) and in OpenCode otherwise. MiniMax and GLM came through a different provider and ran a few hours after the others, so their agents met a slightly later web.</li>
+  <li><b>Choices made after seeing data.</b> We wrote each design down before collecting its data, but some choices came later. MiniMax and GLM joined after the first runs, with their analyses fixed before their data. In the experiment of Part III, we dropped a 150-word limit on readers' memos after seeing the results; this added 21 trials and moved the average change from +11.2 to +11.4. The hand coding of test suspicion and the comparison of writers within each asset and side are exploratory.</li>
+  <li><b>Containment.</b> Our agents could search and read but never post. The effects of agent writing that is actually published remain untested.</li>
+  <li><b>Who helped write this.</b> This study was run, and this post drafted, with the help of Claude, an Anthropic model. Anthropic is one of the companies studied and Claude Haiku is one of the models. We fixed the main analyses before the data, with the exceptions listed above, treated every maker the same way, and count Haiku's refusals to write as missing data, not as a virtue.</li>
+</ul>
+</details>
+
+<h2 id="disclaimer" class="major">Disclaimer</h2>
+<div class="disclaimer">
+  <p><b>For academic study only.</b> This post reports an academic study of how AI models behave. It is published solely for academic research and education, and should be read in that context. The results are provided as is, without any warranty of accuracy or completeness, and the author accepts no liability for any decision made on the basis of them.</p>
+  <p><b>Model outputs are not statements of fact.</b> The votes, ratings, rankings, portfolios and articles described here were produced by AI models and may be inaccurate, incomplete or unverified. We report them as data about model behavior. Quoting or summarizing a model&#8217;s output does not mean that we, or anyone else, consider it true.</p>
+  <p><b>Not investment advice.</b> The portfolios, rankings and savings decisions come from a simulated experiment with hypothetical investors; no money was invested and no trade was made. Nothing here is a recommendation to buy, sell or hold any security or asset, or an assessment of any company&#8217;s financial prospects. Consult a qualified professional before making investment decisions.</p>
+  <p><b>Not a political position.</b> Political questions serve here only as a measurement instrument. We report how the models answered; we do not judge which side of any dispute is right, and nothing here endorses or opposes a party, a candidate, a policy or a ballot measure. Labels such as &#8220;the Democratic side&#8221; describe how legislators voted on specific roll calls and are not a characterization of either party or its voters. The post is not intended to influence any election, and it was published after polls closed.</p>
+  <p><b>Not our view of any company or model.</b> The ratings and rankings are the models&#8217; outputs, not our assessment of the companies named, and make no claim about any company&#8217;s conduct. Results for a model describe one version, tested at one time through public interfaces, and are not an evaluation of the model&#8217;s overall quality or safety or of its developer&#8217;s products.</p>
+  <p><b>Names and marks.</b> Company, product and model names belong to their owners. The initials badges in the figures are not logos, and naming a company implies no affiliation with it or endorsement by it.</p>
+  <p><b>The articles stay private.</b> The articles written in Part III may contain unverified claims. They were never published, no agent could post content online, and we do not reproduce them here.</p>
+</div>
+
+<h2 id="references">References</h2>
+<ol class="refs">
+  <li id="ref-metr">Kwa, T., West, B., Becker, J., et al. (2025). <i>Measuring AI Ability to Complete Long Software Tasks</i>. arXiv:2503.14499. <a href="https://arxiv.org/abs/2503.14499">arxiv.org/abs/2503.14499</a></li>
+  <li id="ref-imo">Google DeepMind (2025, July 21). <i>Advanced version of Gemini with Deep Think officially achieves gold-medal standard at the International Mathematical Olympiad</i>. <a href="https://deepmind.google/discover/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad">deepmind.google</a></li>
+  <li id="ref-erdos">OpenAI (2026, May). <i>An OpenAI model has disproved a central conjecture in discrete geometry</i>. <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/">openai.com</a></li>
+  <li id="ref-zeta">Alp&ouml;ge, L., &amp; Furman, R. (2026). <i>More than two thirds of the zeta zeros are simple and on the critical line</i>. arXiv:2608.13637 (proof discovered by Claude). <a href="https://arxiv.org/abs/2608.13637">arxiv.org/abs/2608.13637</a></li>
+  <li id="ref-burnham">Burnham, J. (1941). <i>The Managerial Revolution: What Is Happening in the World</i>. New York: John Day.</li>
+  <li id="ref-michels">Michels, R. (1915). <i>Political Parties: A Sociological Study of the Oligarchical Tendencies of Modern Democracy</i> (E. Paul &amp; C. Paul, Trans.). New York: Hearst's International Library. Original work published 1911.</li>
+  <li id="ref-ces">Cooperative Election Study, Common Content, 2018&ndash;2024. Harvard University. <a href="https://cces.gov.harvard.edu/">cces.gov.harvard.edu</a></li>
+  <li id="ref-voteview">Lewis, J. B., Poole, K., Rosenthal, H., Boche, A., Rudkin, A., &amp; Sonnet, L. <i>Voteview: Congressional Roll-Call Votes Database</i>. <a href="https://voteview.com/">voteview.com</a></li>
+</ol>
+
+<h2 id="appendix">Appendix: the models</h2>
+<table>
+  <thead>
+    <tr><th>Model</th><th>Maker</th><th>Agent harness</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>GPT-6 Luna</td><td>OpenAI</td><td>Codex</td></tr>
+    <tr><td>GPT-6.1 Terra</td><td>OpenAI</td><td>Codex</td></tr>
+    <tr><td>Claude Haiku 5.5</td><td>Anthropic</td><td>Claude Code</td></tr>
+    <tr><td>Grok 4.7</td><td>xAI</td><td>Grok Build</td></tr>
+    <tr><td>Muse Wonder</td><td>Meta</td><td>OpenCode</td></tr>
+    <tr><td>DeepSeek V4.1 Flash 1017</td><td>DeepSeek</td><td>OpenCode</td></tr>
+    <tr><td>Beam 1.0</td><td>Reflection</td><td>OpenCode</td></tr>
+    <tr><td>MiniMax M3.1 Flash</td><td>MiniMax</td><td>OpenCode</td></tr>
+    <tr><td>GLM 5.3 Flash</td><td>Zhipu AI</td><td>OpenCode</td></tr>
+  </tbody>
+</table>
+
+<h2 id="cite">Citation</h2>
+<div class="cite">
+<pre><code>@misc{chen2026socialactor,
+  title  = {On the Rise of AI as a Social Actor},
+  author = {Chen, Zhuoming},
+  year   = {2026},
+  month  = nov,
+  url    = {https://dreaming-panda.github.io/blog/2026/11/04/rise-of-ai-as-a-social-actor/}
+}</code></pre>
+</div>
