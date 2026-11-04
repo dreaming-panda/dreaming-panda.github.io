@@ -313,7 +313,7 @@ layout: base
     <div class="lf-meta">
       {% if page.authors %}<span class="who">{{ page.authors | join: ", " }}</span><span>·</span>{% endif %}
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
-      <span>·</span><span>{{ content | number_of_words | divided_by: 230 | plus: 1 }} min read</span>
+      <span>·</span><span>{% if page.read_time %}{{ page.read_time }}{% endif %}{% unless page.read_time %}{{ content | strip_html | number_of_words | divided_by: 230 | plus: 1 }}{% endunless %} min read</span>
     </div>
   </header>
 
