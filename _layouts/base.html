@@ -5,6 +5,22 @@
   <title>{% if page.title %}{{ page.title | escape }} · {% endif %}Zhuoming Chen 陈卓明</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{ page.description | default: 'Blog of Zhuoming Chen, Ph.D. student at Carnegie Mellon University.' | escape }}">
+  {% if page.image %}
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Zhuoming Chen">
+  <meta property="og:title" content="{{ page.title | escape }}">
+  <meta property="og:description" content="{{ page.description | escape }}">
+  <meta property="og:url" content="https://dreaming-panda.github.io{{ page.url }}">
+  <meta property="og:image" content="https://dreaming-panda.github.io{{ page.image }}">
+  <meta property="og:image:width" content="2400">
+  <meta property="og:image:height" content="1260">
+  <meta property="og:image:alt" content="{{ page.image_alt | default: page.title | escape }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page.title | escape }}">
+  <meta name="twitter:description" content="{{ page.description | escape }}">
+  <meta name="twitter:image" content="https://dreaming-panda.github.io{{ page.image }}">
+  <meta name="twitter:image:alt" content="{{ page.image_alt | default: page.title | escape }}">
+  {% endif %}
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
